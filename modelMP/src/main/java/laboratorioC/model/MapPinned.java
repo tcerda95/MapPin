@@ -1,5 +1,6 @@
 package laboratorioC.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapPinned {
@@ -18,6 +19,7 @@ public class MapPinned {
 		this.author = author;
 		this.initial = initial;
 		this.zoom = zoom;
+		tabs = new ArrayList<>();
 	}
 
 	public MapPinned(final int id, final String name, final String description, final Author author, final LatLng initial, int zoom, final List<MapPinTab> tabs) {
@@ -25,7 +27,11 @@ public class MapPinned {
 		this.name = name;
 		this.description = description;
 		this.author = author;
-		this.tabs = tabs;
+		
+		if (tabs == null)
+			this.tabs = new ArrayList<>();
+		else
+			this.tabs = tabs;
 		this.initial = initial;
 		this.zoom = zoom;
 	}
