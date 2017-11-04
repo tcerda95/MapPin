@@ -14,8 +14,8 @@ public class MapPinServiceImpl implements MapPinService {
 	private MapPinDao mapPinDao;
 	
 	@Override
-	public MapPin createMapPin(String name, String description, PinCategory pinCategory, float latitude, float longitude, int mapPinTabId) {
-		return mapPinDao.createMapPin(name, description, pinCategory, latitude, longitude, mapPinTabId);
+	public MapPin createMapPin(String name, String description, PinCategory pinCategory, String imageurl, float latitude, float longitude, int mapPinTabId) {
+		return mapPinDao.createMapPin(name, description, pinCategory, imageurl, latitude, longitude, mapPinTabId);
 	}
 
 }
