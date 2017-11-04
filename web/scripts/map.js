@@ -13,10 +13,40 @@ angular.module('mappinApp', [])
     var selectedLatLng = {lat: 0, lng:0};
 
     function markerCreate(){
-    new google.maps.Marker({
+
+      var hitoTitle = $("#hito").val();
+      var desc = $("#hitodesc").val();
+
+      var contentString = '<div class="iw-container">'+
+            '<div class="infowindowContent">'+
+            '<div class="iw-title">'+
+              hitoTitle +
+            +'</div>'+
+            '<p>' + desc + '</p>' +
+            '</div>'+ 
+            '</div>'
+            ;
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+
+   var infowindow = new google.maps.InfoWindow({
+          content: contentString
+    });
+
+
+    var marker =  new google.maps.Marker({
             position: selectedLatLng,
-            map: map
+            map: map, 
+            title: hitoTitle
          });
+
+     marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
           
       $('#marker-modal').modal('hide')
     }
@@ -24,11 +54,14 @@ angular.module('mappinApp', [])
 
 
     function initMap() {
-        var uluru = {lat: -33, lng: -55};
+      var uluru = {lat: -33, lng: -55};
 
        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 3,
           center: uluru,
+          mapTypeControl: false,
+          fullscreenControl: false,
+          streetViewControl: false,
           styles: [
                     {
                       "featureType": "administrative.land_parcel",
@@ -127,6 +160,11 @@ angular.module('mappinApp', [])
 
       map.addListener('rightclick', function(mouseEvent) {
           selectedLatLng = mouseEvent.latLng;
+          
+          // Clear values
+          $("#hito").val('');
+          $("#hitodesc").val('');
+
           $('#marker-modal').modal('show')
      });
 
