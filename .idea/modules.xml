@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MapPin.iml" filepath="$PROJECT_DIR$/MapPin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interfaceMP/interfaceMP.iml" filepath="$PROJECT_DIR$/interfaceMP/interfaceMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modelMP/modelMP.iml" filepath="$PROJECT_DIR$/modelMP/modelMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/persistenceMP/persistenceMP.iml" filepath="$PROJECT_DIR$/persistenceMP/persistenceMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/serviceMP/serviceMP.iml" filepath="$PROJECT_DIR$/serviceMP/serviceMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webappMP/webappMP.iml" filepath="$PROJECT_DIR$/webappMP/webappMP.iml" />
+    </modules>
+  </component>
+</project>

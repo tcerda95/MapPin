@@ -11,16 +11,25 @@
 	margin: 0 5px;
 }
 
+.add-tab:hover {
+	cursor: pointer;
+}
+
 .tab {
 	background-color: #f0f0f0;
 	padding: 10px;
     font-weight: 600;
     font-size: 1.3em;
 	margin: 0 5px;
+	border-radius: 4px;
+}
+
+.tab:hover {
+	cursor: pointer;
 }
 
 .tab.selected {
-	background-color: #dbb68f;
+	background-color: #0ca4a5;
 }
 
 #map {
@@ -217,3 +226,11 @@ input[type="radio"]:focus + span {
 .material-icons {
     display: inline;
 }
+
+.star-rating {
+  line-height:70px;
+  font-size:2.3em;
+	text-align: center;
+}
+
+.star-rating .fa-star{color: #fec943;}

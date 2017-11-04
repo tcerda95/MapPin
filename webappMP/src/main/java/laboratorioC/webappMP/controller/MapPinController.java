@@ -28,6 +28,7 @@ import laboratorioC.service.AuthorService;
 import laboratorioC.service.MapPinService;
 import laboratorioC.service.MapPinTabService;
 import laboratorioC.service.MapPinnedService;
+import laboratorioC.webappMP.dto.MapListDTO;
 import laboratorioC.webappMP.dto.MapPinDTO;
 import laboratorioC.webappMP.dto.MapPinTabDTO;
 import laboratorioC.webappMP.dto.MapPinnedDTO;
@@ -35,7 +36,7 @@ import laboratorioC.webappMP.dto.MapPinnedDTO;
 @Path("map")
 @Controller
 @Produces(value = {MediaType.APPLICATION_JSON})
-public class HelloWorldController {
+public class MapPinController {
 	
 	@Autowired
 	private MapPinnedService mapPinnedService;
@@ -63,6 +64,14 @@ public class HelloWorldController {
 		return Response.ok(new MapPinnedDTO(map)).build();
 	}
 	
+	@GET
+	@Path("/")
+	public Response getMaps() {
+		final List<MapPinned> maps = mapPinnedService.getMaps();
+				
+		return Response.ok(new MapListDTO(maps)).build();
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
@@ -71,19 +80,24 @@ public class HelloWorldController {
 			Response.status(Status.BAD_REQUEST);
 			System.out.println("MAP DTO ES NULL");
 		}
-				
+		
 		Author author = authorService.getAuthorByEmail(mapDto.getAuthor().getEmail());
-				
+
 		if (author == null)
 			author = authorService.createAuthor(mapDto.getAuthor().getName(), mapDto.getAuthor().getEmail());
-		
-		final MapPinned map = mapPinnedService.createMap(mapDto.getName(), mapDto.getDescription(), author.getId(), 
+
+		MapPinned map = mapPinnedService.createMap(mapDto.getName(), mapDto.getDescription(), author.getId(), 
 				mapDto.getInitial().getLatLng().getLat(), mapDto.getInitial().getLatLng().getLng(), mapDto.getInitial().getZoom());
+
+		if (mapDto.getTabs() == null)
+			map.setTabs(new ArrayList<>());
+		else
+			map.setTabs(insertMapPinTabs(mapDto.getTabs(), map.getId()));
 		
-		map.setTabs(insertMapPinTabs(mapDto.getTabs(), map.getId()));
+		if (mapDto.hasId() && mapPinnedService.getMapById(mapDto.getId()) != null)
+			map = mapPinnedService.replaceMap(mapDto.getId(), map.getId());
 		
 		final URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(map.getId())).build();
-		
 		return Response.created(location).entity(new MapPinnedDTO(map)).build();
 	}
 	
@@ -108,5 +122,5 @@ public class HelloWorldController {
 					pinDto.getLatLng().getLat(), pinDto.getLatLng().getLng(), tabId));
 		
 		return pins;
-	}
+	}	
 }

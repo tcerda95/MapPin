@@ -1,3 +1,13 @@
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 var icons = {
 	religion: 'img/praying.png',
 	science: 'img/atomic.png',
@@ -8,13 +18,36 @@ var icons = {
 	art: 'img/paint-board-and-brush.png',
 	society: 'img/holding-hands-in-a-circle.png'  
 }
+
 var markers = [];
 selectedlatLng = {lat: 0, lng:0};
+var myUrl;
 
 angular.module('mappinApp', ['ngAnimate'])
+	.controller('MapController', function($http) {
+    	this.selectedTab = 0;
+      this.infomap = {};
+      var id = getParameterByName('id');
 
-	.controller('MapController', function() {
-	this.selectedTab = 0;
+      console.log("Id is" + id);
+      myUrl = "http://localhost:8080/map/" + id;
+      console.log(myUrl);
+      var myself = this;
+
+      $http.get(myUrl).then(function(response){
+            console.log("HOOOOOOO");
+            console.log(response);
+            myself.infomap = response.data;
+
+            myself.infomap.tabs[myself.selectedTab].pins.forEach(function(item, index){
+              addPin(item);
+            });
+
+           }, function(response){
+              
+           }
+      );
+/*
 	this.infomap = 
 		{name: "Historia Argentina 1910",
 		 description: "Un mapa que prueba lo bueno que es mappin para aprender todo tipo de cosas en un modo interactivo, enriquecedor, blockchain",
@@ -41,16 +74,13 @@ angular.module('mappinApp', ['ngAnimate'])
 		}
 	;
 
-
+*/
 	this.showDescription = false;
 
 	this.titleHover = function(value) {
 		this.showDescription = value;
 	}
 
-	this.infomap.tabs[this.selectedTab].pins.forEach(function(item, index){
-		addPin(item);
-	});
 
 	this.clickedTab = function(index) {
 		if (this.selectedTab == index)
@@ -117,6 +147,13 @@ angular.module('mappinApp', ['ngAnimate'])
 			img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"
 		}     
 		this.infomap.tabs[this.selectedTab].pins.push(pin);
+
+    console.log("About to log " + myUrl);
+    console.log(this.infomap);
+    $http.post("http://localhost:8080/map", this.infomap).then(function(){
+      console.log("POSTED!");
+    })
+
 		addPin(pin);
 	};
 	
@@ -127,7 +164,6 @@ angular.module('mappinApp', ['ngAnimate'])
 		var contentString = '<div id="iw-container">' +
 			'<div class="iw-title">'+ pin.name + '</div>' +
 			'<div class="iw-content">' +
-			'<div class="iw-subTitle">Descripción</div>' +
 			'<img src="'+ pin.img_url +'">' +
 			'<p>'+ pin.description + '</p>'+
 			'</div>' +
@@ -232,3 +268,26 @@ angular.module('mappinApp', ['ngAnimate'])
 		});
 	});
 
+
+
+var $star_rating = $('.star-rating .fa');
+
+var SetRatingStar = function() {
+  return $star_rating.each(function() {
+    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      return $(this).removeClass('fa-star-o').addClass('fa-star');
+    } else {
+      return $(this).removeClass('fa-star').addClass('fa-star-o');
+    }
+  });
+};
+
+$star_rating.on('click', function() {
+  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+  return SetRatingStar();
+});
+
+SetRatingStar();
+$(document).ready(function() {
+
+});

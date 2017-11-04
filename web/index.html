@@ -6,7 +6,7 @@
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/modal-crear.css">
+		<link rel="stylesheet" type="text/css" href="css/modal-crear.css">
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -18,12 +18,8 @@
 				crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		
-		<script src="scripts/index.js"></script>
-        
-
+		<script src="scripts/index.js"></script>        
+				     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"></script>
 	</head>
 
 	<body ng-controller="HomeController as homeCtrl">
@@ -41,11 +37,8 @@
 					<a class="navbar-brand" rel="home" href="index.html"><img style="max-width:130px; margin-top: 2px;" src="img/logo.png"></a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Inicio</a></li>
-					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal">Crear mapa</button></li>
+						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal" onclick="openModal()">Crear mapa</button></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -55,55 +48,23 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="most-popular-title">Más populares</div>
+					<div class="most-popular-title">Más destacados</div>
 				</div>
 			</div>
-			<div ng-repeat="map in homeCtrl.maps" ng-if="$index % 3 == 0" class="row">
+
+			<div ng-repeat="map in maps">
+				<div class="clearfix" ng-if="$index % 3 == 0"></div>
 				<div class="col-md-4">
-					<div class="map-card" ng-click="homeCtrl.testClick()">
+					<div class="map-card" ng-click="homeCtrl.clickedMap($index)">
 						<div class="map-name">
-							{{homeCtrl.maps[$index].name}}
+							{{map.name}}
 						</div>
 
 						<div class="map-image">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
-									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center={{map.initial.latLng.lat}},{{map.initial.latLng.lng}}&zoom={{map.initial.zoom}}&size=600x300&maptype=roadmap
 									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
 						</div>
-						<div class="map-card-description" ng-bind="homeCtrl.maps[$index].description">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 1)">
-					<div class="map-card" ng-click="homeCtrl.testClick()">
-						<div class="map-name">
-							{{homeCtrl.maps[$index + 1].name}}
-						</div>
-
-						<div class="map-image">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
-									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
-									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
-						</div>
-						<div class="map-card-description" ng-bind="homeCtrl.maps[$index + 1].description">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 2)">
-					<div class="map-card" ng-click="homeCtrl.testClick()">
-						<div class="map-name">
-							{{homeCtrl.maps[$index + 2].name}}
-						</div>
-
-						<div class="map-image">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
-									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
-									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
-						</div>
-						<div class="map-card-description" ng-bind="homeCtrl.maps[$index + 2].description">
+						<div class="map-card-description" ng-bind="maps[$index].description">
 						</div>
 					</div>
 				</div>
@@ -112,13 +73,14 @@
 		</div> <!-- /container -->
 
 
+
         <div id="createModal" class="modal fade" role="dialog">
      
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"></script>
     
     <script src="scripts/create-form.js"></script>
         <div class="modal-dialog">
-            <!-- Modal content-->
+             Modal content
             <div class="modal-content content-modal-size">
                 <div class="modal-body">
                   <div class="col-md-12">
@@ -167,7 +129,7 @@
             </div>
             </div>
         </div>
-      </div>
-        
+    </div>
+
 	</body>
 </html>
