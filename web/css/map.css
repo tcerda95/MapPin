@@ -178,7 +178,7 @@ input[type="radio"] + span {
 
 input[type="radio"]:checked + span {
 	color: #D9E7FD;
-  background-color: #4285F4;
+  background-color: #0CA4A5;
 }
 
 input[type="radio"]:focus + span {
