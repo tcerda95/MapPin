@@ -47,7 +47,15 @@
 					<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">
 					<div class="edit-button" ng-show="!editMode" ng-click="enableEditMode()">Editar<span class="glyphicon glyphicon-pencil"></span></div>
 					<div class="ok-button edit-button" ng-show="editMode" ng-click="disableEditMode()">Listo<span class="glyphicon glyphicon-ok"></span></div>
-					<div id="pin-box" ng-mouseenter="showPinBox()" ng-mouseleave="hidePinBox()">Hola</div>
+					<div id="pin-box">
+						<div class="row" ng-repeat="pin in mapCtrl.infomap.tabs[mapCtrl.selectedTab].pins">
+							<div class="col-md-12">
+								<div class="pin-item" ng-click="mapCtrl.focusOnCoordinates(pin.latLng)">
+									<span class="pin-type"><img src="{{icons[pin.type]}}"></span><span class="pin-name" ng-bind="pin.name"></span>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div id="map" class="panel panel-default"></div>
 				</div>
 			</div>
