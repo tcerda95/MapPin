@@ -71,9 +71,7 @@ angular.module('mappinApp', ['ngAnimate'])
         img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"
       }     
       
-      console.log("Esto se llama")
       addPin(pin);
-
    }
 
 
@@ -98,6 +96,7 @@ angular.module('mappinApp', ['ngAnimate'])
         var marker =  new google.maps.Marker({
                 position: pin.latlng,
                 map: map, 
+				icon: icons[pin.type],
                 title: pin.name
              });
 
