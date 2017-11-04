@@ -5,9 +5,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="css/map.css">
 	  
-	  		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-				crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
 
@@ -34,8 +34,7 @@
 					<span class="add-tab add-tab-left ">
 						<span class="glyphicon glyphicon-plus"></span>
 					</span>
-					<span ng-repeat="tabItem in mapCtrl.map.tabs" class="tab">
-						{{tabItem.name}}
+					<span ng-repeat="tabItem in mapCtrl.map.tabs" class="tab" ng-bind="tabItem.name">
 					</span>
 					<span class="add-tab add-tab-right">
 						<span class="glyphicon glyphicon-plus"></span>

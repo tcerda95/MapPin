@@ -69,7 +69,8 @@
 									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
 									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
 						</div>
-
+						<div class="map-card-description" ng-bind="homeCtrl.maps[$index].description">
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 1)">
@@ -84,7 +85,8 @@
 									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
 									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
 						</div>
-
+						<div class="map-card-description" ng-bind="homeCtrl.maps[$index + 1].description">
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 2)">
@@ -99,7 +101,8 @@
 									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
 									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
 						</div>
-
+						<div class="map-card-description" ng-bind="homeCtrl.maps[$index + 2].description">
+						</div>
 					</div>
 				</div>
 			</div>
