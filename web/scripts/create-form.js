@@ -1,14 +1,3 @@
-function getFormData() {
-    var mapName = document.getElementById("MapName").value;
-    var author = document.getElementById("MapAuthor").value;
-    var place = document.getElementById("autocomplete").value;
-    //tomar map para datos del mapa
-    console.log(place);
-    console.log(map);
-    
-
-}
-
 $('#createModal').on('shown.bs.modal', function () {
         initMap();
     });
@@ -60,3 +49,44 @@ function initMap() {
         });
 
       }
+
+function getFormData() {
+    var mapName = document.getElementById("MapName").value;
+    var authorName = document.getElementById("MapAuthor").value;
+    var email = document.getElementById("MapEmail").value;
+    var place = document.getElementById("autocomplete").value;
+    var descr = document.getElementById("MapDescription").value;
+
+    var lat = map.center.lat();
+    var lng = map.center.lng();
+    var zoom = map.zoom;
+    //tomar map para datos del mapa
+    
+    console.log(lat);
+    console.log(lng);
+    console.log(zoom);
+
+    
+    var xhr = new XMLHttpRequest();
+    var url = "http://localhost:8080/map";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var json = JSON.parse(xhr.responseText);
+        console.log("algo en el if");
+    }
+    };
+    
+    var data = JSON.stringify({"name": mapName, 
+                               "author": {"name": authorName, "email": email},
+                               "description": descr,
+                               "tabs": null,
+                               "initial": {"latLng": {"lat": lat , "lng": lng}, "zoom": zoom}
+                              });
+    
+    xhr.send(data);
+    
+    $('#createModal').modal('hide');
+    
+}
