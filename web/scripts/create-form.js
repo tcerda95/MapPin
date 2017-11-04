@@ -1,7 +1,11 @@
 function getFormData() {
     var mapName = document.getElementById("MapName").value;
     var author = document.getElementById("MapAuthor").value;
-    console.log(mapName);
+    var place = document.getElementById("autocomplete").value;
+    //tomar map para datos del mapa
+    console.log(place);
+    console.log(map);
+    
 
 }
 
@@ -11,12 +15,12 @@ $('#createModal').on('shown.bs.modal', function () {
 
 function initMap() {
         // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('mapModal'), {
-          center: {lat: -33.867, lng: 151.195},
-          zoom: 8
+        map = new google.maps.Map(document.getElementById('mapModal'), {
+          center: {lat: 0, lng: 0},
+          zoom: 1
         });
           
-          var input = /** @type {!HTMLInputElement} */(
+        var input = /** @type {!HTMLInputElement} */(
             document.getElementById('autocomplete'));
 
         var types = document.getElementById('type-selector');

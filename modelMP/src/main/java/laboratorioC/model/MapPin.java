@@ -7,7 +7,7 @@ public class MapPin {
 	private final PinCategory category;
 	private final LatLng latLng;
 
-	public MapPin(final int id, final String name, final String description, final PinCategory category, final double latitude, final double longitude) {
+	public MapPin(final int id, final String name, final String description, final PinCategory category, final float latitude, final float longitude) {
 		this.id = id;
 		this.name = name;
 		this.description = description;

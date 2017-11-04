@@ -3,9 +3,14 @@ package laboratorioC.model;
 import java.util.List;
 
 public class MapPinTab {
-	private final int id;
+	private int id;
 	private final String name;
-	private final List<MapPin> pins;
+	private List<MapPin> pins;
+	
+	public MapPinTab(final int id, final String name) {
+		this.id = id;
+		this.name = name;
+	}
 	
 	public MapPinTab(final int id, final String name, final List<MapPin> pins) {
 		this.id = id;
@@ -17,6 +22,10 @@ public class MapPinTab {
 		return id;
 	}
 
+	public void setPins(List<MapPin> pins) {
+		this.pins = pins;
+	}
+	
 	public String getName() {
 		return name;
 	}
