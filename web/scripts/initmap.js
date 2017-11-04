@@ -104,6 +104,9 @@ function initMap() {
         });
 
       map.addListener('rightclick', function(mouseEvent) {
+		  if (!editMode)
+			  return;
+		  
           selectedlatLng = mouseEvent.latLng;
           
           // Clear values

@@ -30,7 +30,6 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal">Crear mapa</button></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -45,7 +44,9 @@
 						<div class="map-description" ng-bind="mapCtrl.infomap.description" ng-show="mapCtrl.showDescription">
 						</div>
 					</div>
-					<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">    
+					<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">
+					<div class="edit-button" ng-show="!editMode" ng-click="editMode = true">Editar<span class="glyphicon glyphicon-pencil"></span></div>
+					<div class="ok-button edit-button" ng-show="editMode" ng-click="editMode = false">Listo<span class="glyphicon glyphicon-ok"></span></div>
 					<div id="map" class="panel panel-default"></div>
 				</div>
 			</div>

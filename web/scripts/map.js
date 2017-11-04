@@ -22,14 +22,16 @@ var icons = {
 var markers = [];
 selectedlatLng = {lat: 0, lng:0};
 var myUrl;
+editMode = false;
 
 angular.module('mappinApp', ['ngAnimate'])
 	.controller('MapController', function($http) {
     	this.selectedTab = 0;
       this.infomap = {};
       var id = getParameterByName('id');
-
-      console.log("Id is" + id);
+		editMode = getParameterByName('edit')
+      
+		console.log("Id is" + id);
       myUrl = "http://localhost:8080/map/" + id;
       console.log(myUrl);
       var myself = this;
