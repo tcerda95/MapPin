@@ -19,6 +19,10 @@
 	margin: 0 5px;
 }
 
+.tab.selected {
+	background-color: #dbb68f;
+}
+
 #map {
 	height: 600px;
 	width: 100%;
@@ -30,7 +34,7 @@
 
 .map-info {
 	position: absolute;
-    z-index: 9999 !important;
+    z-index: 1 !important;
     margin: 10px;
 }
 
@@ -125,7 +129,7 @@
 #autocomplete {
 	position: absolute;
     right: 10px;
-    z-index: 9999 !important;
+    z-index: 1 !important;
     margin: 10px;
 	width: auto !important;
 }

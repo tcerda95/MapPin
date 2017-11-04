@@ -1,13 +1,21 @@
 package laboratorioC.model;
 
 public class MapPin {
-	private final int id;
+	private int id;
 	private final String name;
 	private final String description;
 	private final PinCategory category;
 	private final String imageUrl;
 	private final LatLng latLng;
 
+	public MapPin(final String name, final String description, final PinCategory category, final String imageUrl, final float latitude, final float longitude) {
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.imageUrl = imageUrl;
+		this.latLng = new LatLng(latitude, longitude);
+	}
+	
 	public MapPin(final int id, final String name, final String description, final PinCategory category, final String imageUrl, final float latitude, final float longitude) {
 		this.id = id;
 		this.name = name;

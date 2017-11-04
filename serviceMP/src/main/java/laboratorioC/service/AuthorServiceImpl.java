@@ -22,4 +22,9 @@ public class AuthorServiceImpl implements AuthorService {
 		return authorDao.getAuthorById(id);
 	}
 
+	@Override
+	public Author getAuthorByEmail(String email) {
+		return authorDao.getAuthorByEmail(email);
+	}
+
 }
