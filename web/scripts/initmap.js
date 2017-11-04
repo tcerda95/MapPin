@@ -9,6 +9,7 @@ function initMap() {
           mapTypeControl: false,
           fullscreenControl: false,
           streetViewControl: false,
+          minZoom: 3,
           styles: [
                     {
                       "featureType": "administrative.land_parcel",

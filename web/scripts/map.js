@@ -211,6 +211,14 @@ angular.module('mappinApp', ['ngAnimate'])
 		});
 
 
+    marker.addListener('dblclick', function() {  
+        map.setCenter(this.position);
+        if(map.getZoom() <= 7){
+          map.setZoom(7);
+        }
+    });
+
+
 		google.maps.event.addListener(infowindow,'closeclick',function(){
 			mouseOutHandler = marker.addListener('mouseout', function() {
 				infowindow.close(map, marker);     
