@@ -140,6 +140,7 @@ angular.module('mappinApp', ['ngAnimate'])
 		var hitoTitle = $("#hito").val();
 		var desc = $("#hitodesc").val();
 		var type= $('#radios input:checked').val();
+		var img_url = $('#hitoimg').val();
 		console.log(type);
 		$('#marker-modal').modal('hide')
 
@@ -148,7 +149,7 @@ angular.module('mappinApp', ['ngAnimate'])
 			description: desc,
 			type: type,
 			latLng: selectedlatLng,
-			img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"
+			img_url: img_url
 		}     
 		this.infomap.tabs[this.selectedTab].pins.push(pin);
 
