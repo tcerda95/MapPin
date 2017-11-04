@@ -77,24 +77,32 @@
        <div class="modal fade" id="marker-modal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Crear un pin</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
                         <div class="modal-body">
+                            <div class="row">
+                                <div class="modal-title">
+                                    <h2 style="text-align: center;">Crear un Pin</h2> 
+                                </div>
+                            </div>  
                                 <div class="row">
                                     <input type="hidden" name="destination" />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
                                     <label path="subject">Hito:</label>
-                                    <input type="text" placeholder="..." class="form-control alumnia-input" id="hito"/>
-                                    
-                                    <textarea placeholder="Descripcion..." rows="10" cols="50" class="" id="hitodesc"></textarea>
-
-                                    <div style="margin-top: 8px;">
-                                    <input type="button" class="btn btn-info" onclick="markerCreate()" value="Crear"/>
-                                    </div>
+                                    <input type="text" placeholder="Nombre del hito" class="form-control alumnia-input" id="hito"/>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1" style="margin-top: 8px;">
+                                    <label path="subject">Descripción:</label>
+                                    <textarea placeholder="Descripcion..." rows="10" cols="50" class="form-control" id="hitodesc"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div style="margin-top: 8px;text-align: center;">  
+                                        <input type="button" class="btn btn-info" onclick="markerCreate()" value="Crear"/>
+                                    </div>
+                            </div>
                         </div>
                 </div>
             </div>
