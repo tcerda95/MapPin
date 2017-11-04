@@ -59,7 +59,19 @@ angular.module('mappinApp', ['ngAnimate'])
     this.infomap.tabs[this.selectedTab].pins.forEach(function(item, index){
       addPin(item);
     });
-  }
+  };
+	
+	var leftTabAdd = false;
+	this.addTabLeft = function() {
+		leftTabAdd = true;
+		$('#createTabModal').modal('show');	
+	};
+	
+	
+	this.addTabRight = function() {
+		leftTabAdd = false;
+		$('#createTabModal').modal('show');	
+	};
 })
 ;
 
