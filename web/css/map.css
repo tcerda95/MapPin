@@ -4,19 +4,29 @@
 }
 
 .add-tab {
-	background-color: #f0f0f0;
-	padding: 10px;
     font-weight: 600;
     font-size: 1.3em;
-	margin: 0 5px;
+	margin: 0 4px;
 }
 
 .add-tab:hover {
 	cursor: pointer;
 }
 
+.add-tab .glyphicon {
+	margin: 0;
+}
+
+.add-tab .glyphicon:hover {
+	color: #7b7b7b;
+}
+
 .map-box .glyphicon {
 	margin-left: 8px !important;
+}
+
+.add-tab .glyphicon {
+	margin-left: 0 !important;
 }
 
 .tab {
@@ -24,8 +34,7 @@
 	padding: 10px;
     font-weight: 600;
     font-size: 1.3em;
-	margin: 0 5px;
-	border-radius: 4px;
+	margin: 0 4px;
 }
 
 .tab:hover {
@@ -34,6 +43,7 @@
 
 .tab.selected {
 	background-color: #0ca4a5;
+	color: #fff;
 }
 
 #map {
