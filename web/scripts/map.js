@@ -30,7 +30,7 @@ angular.module('mappinApp', ['ngAnimate'])
 	$scope.icons = icons;
       var id = getParameterByName('id');
 		$scope.editMode = editMode;
-//		editMode = getParameterByName('edit')
+
       $scope.enableEditMode = function() {
 		  $scope.editMode = true;
 		  editMode = true;
