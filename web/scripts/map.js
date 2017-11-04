@@ -1,8 +1,28 @@
 angular.module('mappinApp', [])
 	.controller('MapController', function() {
 		this.map = 
-			{name: "Historia Argentina 1810", 
-			 tabs: [{name: "1920"}, {name: "1029"}]
+			{name: "Historia Argentina 1910",
+			 description: "Un mapa que prueba lo bueno que es mappin para aprender todo tipo de cosas en un modo interactivo, enriquecedor, blockchain",
+			 initial: {latlng:{lat: 10, lng: -30}, zoom: 3.0},
+			 author: {id: 123, name: "Juan Perez", email: "juan@victory.com.ar"},
+			 id: 101,
+			 tabs: [
+				 {name: "1920", id:1, 
+				  pins:[
+					  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latlng: {lat: 10.40, lng:-43.23}, type:"nature"},
+					  {name: "Torcuato de Alvear", description:"De la UCR", latlng: {lat: -10.40, lng:33.23}, type:"art"}]}, 
+				 {name: "1930", id:2,
+				  pins:[
+					  {name: "Uriburu", description:"dictador de facto", latlng: {lat: 90.40, lng:-3.23}, type:"religion"},{name: "Pedro Justo", description:"Partido democrata nacional", latlng: {lat: -40.40, lng:93.23}, type:"science"}]},
+				 {name: "1940", id:3, 
+				  pins:[
+					  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latlng: {lat: 10.40, lng:-43.23}, type:"religion"},
+					  {name: "Torcuato de Alvear", description:"De la UCR", latlng: {lat: -10.40, lng:33.23}, type:"art"}]}, 
+				 {name: "1950", id:4,
+				  pins:[
+					  {name: "Uriburu", description:"dictador de facto", latlng: {lat: 90.40, lng:-3.23}, type:"politics"},
+					  {name: "Pedro Justo", description:"Partido democrata nacional", latlng: {lat: -40.40, lng:93.23}, type: "society"}]},
+			 ]
 			}
 		;
 	})
