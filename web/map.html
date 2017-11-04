@@ -4,7 +4,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="css/map.css">
-	  
+	  	  <link rel="stylesheet" href="css/index.css">
+
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 		crossorigin="anonymous"></script>
@@ -15,32 +16,55 @@
     <script src="scripts/map.js"></script>
   </head>
   <body ng-controller="MapController as mapCtrl">
-    <input id="autocomplete" type="text" size="50" placeholder="Anything you want!">    
-	<div class="map-box">
+	 		<!-- Static navbar -->
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" rel="home" href="#"><img style="max-width:130px; margin-top: 2px;" src="img/logo.png"></a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Inicio</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal">Crear mapa</button></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</nav>
+	  
+	<div class="container-fluid map-box ">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="map-info">
-					<div class="map-title" ng-bind="mapCtrl.map.name" ng-mouseover="mapCtrl.titleHover(true)" ng-mouseleave="mapCtrl.titleHover(false)">
+					<div class="map-title" ng-bind="mapCtrl.infomap.name" ng-mouseover="mapCtrl.titleHover(true)" ng-mouseleave="mapCtrl.titleHover(false)">
 					</div>
-					<div class="map-description" ng-bind="mapCtrl.map.description" ng-show="mapCtrl.showDescription">
+					<div class="map-description" ng-bind="mapCtrl.infomap.description" ng-show="mapCtrl.showDescription">
 					</div>
 				</div>
-				<div id="map"></div>
+				<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">    
+				<div id="map" class="panel panel-default"></div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<div ng-if="mapCtrl.map.tabs.length > 0" class="tabs">
+				<div ng-if="mapCtrl.infomap.tabs.length > 0" class="tabs">
 					<span class="add-tab add-tab-left ">
 						<span class="glyphicon glyphicon-plus"></span>
 					</span>
-					<span ng-repeat="tabItem in mapCtrl.map.tabs" class="tab" ng-bind="tabItem.name">
+					<span ng-repeat="tabItem in mapCtrl.infomap.tabs" class="tab" ng-bind="tabItem.name">
 					</span>
 					<span class="add-tab add-tab-right">
 						<span class="glyphicon glyphicon-plus"></span>
 					</span>
 				</div>
-				<div ng-if="mapCtrl.map.tabs.length == 0" class="tabs">
+				<div ng-if="mapCtrl.infomap.tabs.length == 0" class="tabs">
 					<span class="add-tab add-tab-right">
 						<span class="glyphicon glyphicon-plus"></span>
 					</span>
