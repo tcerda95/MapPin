@@ -1,6 +1,7 @@
 angular.module('mappinApp', ['ngAnimate'])
 	.controller('MapController', function() {
-		this.map = 
+
+		this.infomap = 
 			{name: "Historia Argentina 1910",
 			 description: "Un mapa que prueba lo bueno que es mappin para aprender todo tipo de cosas en un modo interactivo, enriquecedor, blockchain",
 			 initial: {latlng:{lat: 10, lng: -30}, zoom: 3.0},
@@ -23,12 +24,21 @@ angular.module('mappinApp', ['ngAnimate'])
 					  {name: "Uriburu", description:"dictador de facto", latlng: {lat: 90.40, lng:-3.23}, type:"politics"},
 					  {name: "Pedro Justo", description:"Partido democrata nacional", latlng: {lat: -40.40, lng:93.23}, type: "society"}]},
 			 ]
-			};
-		this.showDescription = false;
+			}
+		;
 	
-		this.titleHover = function(value) {
-			this.showDescription = value;
-		}
+
+  this.infomap.tabs[0].pins.forEach(function(item, index){
+          addPin(item);
+      })
+
+
+  this.showDescription = false;
+	
+	this.titleHover = function(value) {
+  this.showDescription = value;
+	
+  	}
 	})
 ;
 
@@ -36,45 +46,83 @@ angular.module('mappinApp', ['ngAnimate'])
 
     var selectedLatLng = {lat: 0, lng:0};
 
-    function markerCreate(){
+  function markerCreate() {
 
       var hitoTitle = $("#hito").val();
       var desc = $("#hitodesc").val();
+      $('#marker-modal').modal('hide')
+      
+      var pin = {
+        name: hitoTitle,
+        description: desc,
+        latlng: selectedLatLng
+      }     
+      
+      console.log("Esto se llama")
+      addPin(pin);
 
-      var contentString = '<div class="iw-container">'+
-            '<div class="infowindowContent">'+
-            '<div class="iw-title">'+
-              hitoTitle +
-            +'</div>'+
-            '<p>' + desc + '</p>' +
-            '</div>'+ 
-            '</div>'
-            ;
+   }
+
+
+
+    function addPin(pin){
+            console.log("Esto se llama2 ")
+
+        var contentString = '<div id="iw-container">' +
+                    '<div class="iw-title">'+ pin.name + '</div>' +
+                    '<div class="iw-content">' +
+                      '<div class="iw-subTitle">Descripción</div>' +
+                      '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+                      '<p>'+ pin.description + '</p>'+
+                    '</div>' +
+                    '<div class="iw-bottom-gradient"></div>' +
+                  '</div>';
 
         var infowindow = new google.maps.InfoWindow({
           content: contentString
         });
 
 
-   var infowindow = new google.maps.InfoWindow({
-          content: contentString
-    });
+        var marker =  new google.maps.Marker({
+                position: pin.latlng,
+                map: map, 
+                title: pin.name
+             });
 
 
-    var marker =  new google.maps.Marker({
-            position: selectedLatLng,
-            map: map, 
-            title: hitoTitle
-         });
+        marker.addListener('click', function() {
+              infowindow.open(map, marker);
 
-     marker.addListener('click', function() {
-          infowindow.open(map, marker);
+
+
+              var iwOuter = $('.gm-style-iw');
+
+              /* Since this div is in a position prior to .gm-div style-iw.
+               * We use jQuery and create a iwBackground variable,
+               * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+              */
+              var iwBackground = iwOuter.prev();
+
+              // Removes background shadow DIV
+              iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+              // Removes white background DIV
+              iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+
+              // Changes the desired tail shadow color.
+              iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+
+             // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+              if($('.iw-content').height() < 140){
+                $('.iw-bottom-gradient').css({display: 'none'});
+              }
+
         });
+    
 
-          
-      $('#marker-modal').modal('hide')
     }
-
 
 
     function initMap() {
@@ -192,4 +240,7 @@ angular.module('mappinApp', ['ngAnimate'])
           $('#marker-modal').modal('show')
      });
 
-    }
+
+
+
+      }
