@@ -58,7 +58,23 @@ angular.module('mappinApp', ['ngAnimate'])
 		this.infomap.tabs[this.selectedTab].pins.forEach(function(item, index){
 			addPin(item);
 		});
-	}
+	};
+	
+	var leftTabAdd;
+	this.addTabLeft = function() {
+		leftTabAdd = true;
+		$('#createTabModal').modal('show');
+	};
+	
+	this.addTabRight = function() {
+		leftTabAdd = false;
+		$('#createTabModal').modal('show');
+	};
+	
+	this.submitNewSection = function() {
+		console.log($('#tabName').val());
+		console.log(leftTabAdd);
+	};
 })
 ;
 
@@ -101,7 +117,6 @@ function addPin(pin){
 	var contentString = '<div id="iw-container">' +
 		'<div class="iw-title">'+ pin.name + '</div>' +
 		'<div class="iw-content">' +
-		'<div class="iw-subTitle">Descripción</div>' +
 		'<img src="'+ pin.img_url +'">' +
 		'<p>'+ pin.description + '</p>'+
 		'</div>' +
