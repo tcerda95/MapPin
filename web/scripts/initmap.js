@@ -1,3 +1,5 @@
+editMode = false;
+
 function initMap() {
       var uluru = {lat: -33, lng: -55};
 
@@ -104,6 +106,9 @@ function initMap() {
         });
 
       map.addListener('rightclick', function(mouseEvent) {
+		  if (!editMode)
+			  return;
+		  
           selectedlatLng = mouseEvent.latLng;
           
           // Clear values
