@@ -144,7 +144,7 @@ function addPin(pin){
 
  
       google.maps.event.addListener(infowindow,'closeclick',function(){
-          marker.addListener('mouseout', function() {
+         mouseOutHandler = marker.addListener('mouseout', function() {
            infowindow.close(map, marker);     
           });            
       });
