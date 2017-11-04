@@ -1,7 +1,7 @@
 var icons = {
 	religion: 'img/praying.png',
 	science: 'img/atomic.png',
-	economy: 'img/dollar-symbol.png',
+	economy: 'img/coin.png',
 	politics: 'img/capitol.png',
 	nature: 'img/volcano.png',
 	war: 'img/swords.png',
@@ -63,7 +63,7 @@ angular.module('mappinApp', ['ngAnimate'])
       var hitoTitle = $("#hito").val();
       var desc = $("#hitodesc").val();
       $('#marker-modal').modal('hide')
-      
+	  
       var pin = {
         name: hitoTitle,
         description: desc,
@@ -92,11 +92,18 @@ angular.module('mappinApp', ['ngAnimate'])
           content: contentString
         });
 
+		
+		var image = {
+			url: icons[pin.type],
+			scaledSize: new google.maps.Size(32, 32),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(0, 0)
+		  };
 
         var marker =  new google.maps.Marker({
                 position: pin.latlng,
                 map: map, 
-				icon: icons[pin.type],
+				icon: image,
                 title: pin.name
              });
 
