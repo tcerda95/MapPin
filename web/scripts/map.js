@@ -150,6 +150,7 @@ angular.module('mappinApp', ['ngAnimate'])
 
 
   function centerMap(initial){
+    console.log(initial)
        map.setCenter(initial.latLng);
        map.setZoom(initial.zoom);  // Why 17? Because it looks good.
   }

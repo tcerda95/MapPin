@@ -18,7 +18,7 @@ angular.module('mappinApp', [])
         });
 	
 		this.clickedMap = function(index) {
-			window.location.href = '/map.html?id='+index;
+			window.location.href = 'map.html?id='+index;
 		};
 	})
 ;
