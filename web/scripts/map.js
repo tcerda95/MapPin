@@ -1,4 +1,4 @@
-angular.module('mappinApp', [])
+angular.module('mappinApp', ['ngAnimate'])
 	.controller('MapController', function() {
 		this.map = 
 			{name: "Historia Argentina 1910",
@@ -23,8 +23,12 @@ angular.module('mappinApp', [])
 					  {name: "Uriburu", description:"dictador de facto", latlng: {lat: 90.40, lng:-3.23}, type:"politics"},
 					  {name: "Pedro Justo", description:"Partido democrata nacional", latlng: {lat: -40.40, lng:93.23}, type: "society"}]},
 			 ]
-			}
-		;
+			};
+		this.showDescription = false;
+	
+		this.titleHover = function(value) {
+			this.showDescription = value;
+		}
 	})
 ;
 
