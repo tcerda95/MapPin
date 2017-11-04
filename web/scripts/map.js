@@ -161,7 +161,7 @@ angular.module('mappinApp', ['ngAnimate'])
 		var contentString = '<div id="iw-container">' +
 			'<div class="iw-title">'+ pin.name + '</div>' +
 			'<div class="iw-content">' +
-			'<img src="'+ pin.img_url +'">' +
+			(pin.img_url ? '<img src="'+ pin.img_url + '">' : "") +
 			'<p>'+ pin.description + '</p>'+
 			'</div>' +
 			'<div class="iw-bottom-gradient"></div>' +
