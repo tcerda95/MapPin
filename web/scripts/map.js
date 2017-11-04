@@ -90,36 +90,25 @@ angular.module('mappinApp', ['ngAnimate'])
     })
   }
 
-	var leftTabAdd = false;
-	this.addTabLeft = function() {
-		leftTabAdd = true;
-		$('#createTabModal').modal('show');	
- 	};
-
-
-	this.addTabRight = function() {
-		leftTabAdd = false;
+	var newTabIndex = -1;
+	this.addTab = function(index) {
+		newTabIndex = index;
 		$('#createTabModal').modal('show');	
  	};
 
 	this.submitNewSection = function() {
 		var tabName = $('#tabName').val();
-    
+		var newTab = {name: tabName, pins:[]}
 
-   	var newTab = {name: tabName, pins:[]}
-
-		if (leftTabAdd) {
-			this.infomap.tabs.unshift(newTab);
+		if (newTabIndex <= this.selectedTab) {
 			this.selectedTab++;
 		}
-		else {
-			this.infomap.tabs.push(newTab);
-		}
+		this.infomap.tabs.splice(newTabIndex, 0, newTab);
     
-    persist(this);
-		
-    $('#tabName').val('');
-		$('#createTabModal').modal('hide');
+		persist(this);
+
+		$('#tabName').val('');
+			$('#createTabModal').modal('hide');
 	};
 
 
@@ -275,31 +264,6 @@ angular.module('mappinApp', ['ngAnimate'])
 				.siblings('.img-radio').css('opacity','1');
 		});
 	});
-
-
-
-var $star_rating = $('.star-rating .fa');
-
-var SetRatingStar = function() {
-  return $star_rating.each(function() {
-    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-      return $(this).removeClass('fa-star-o').addClass('fa-star');
-    } else {
-      return $(this).removeClass('fa-star').addClass('fa-star-o');
-    }
-  });
-};
-
-$star_rating.on('click', function() {
-  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
-  return SetRatingStar();
-});
-
-SetRatingStar();
-$(document).ready(function() {
-
-});
-
 
 $('#pinsearch').keypress(function (e) {
   var key = e.which;
