@@ -23,3 +23,7 @@ angular.module('mappinApp', [])
 	})
 ;
 
+function openModal(){
+   $('#createModal').modal();   
+}
+

@@ -38,7 +38,7 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal">Crear mapa</button></li>
+						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal" onclick="openModal()">Crear mapa</button></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -72,54 +72,61 @@
 
 		</div> <!-- /container -->
 
+        <div id="createModal" class="modal fade" role="dialog">
+     
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"></script>
+    
+    <script src="scripts/create-form.js"></script>
+        <div class="modal-dialog">
+             Modal content
+            <div class="modal-content content-modal-size">
+                <div class="modal-body">
+                  <div class="col-md-12">
+                      <div class="row">
+                          <div class="modal-title">
+                              <h1>Crear mapa</h1> 
+                          </div>
+                      </div>     
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-md-offset-2">
+                            <input type="text" class="form-control" id="MapName" aria-describedby="mapName" placeholder="Nombre del mapa">
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-md-8 col-md-offset-2">
+                            <input type="text" class="form-control" id="MapAuthor" aria-describedby="mapAuthor" placeholder="Autor">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-md-8 col-md-offset-2">
+                            <input type="email" class="form-control" id="MapEmail" aria-describedby="mapEmail" placeholder="Email">
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-md-offset-2">
+                                <input id="autocomplete" class="controls form-control" type="text" placeholder="Ingresar lugar">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="mapModal" class="col-md-10 col-md-offset-1"></div>
 
-		<div id="createModal" class="modal fade" role="dialog">
-			<script src="scripts/create-form.js"></script>
-			<div class="modal-dialog">
-				<!-- Modal content-->
-				<div class="modal-content content-modal-size">
-					<div class="modal-body">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="modal-title">
-									<h1>Crear mapa</h1> 
-								</div>
-							</div>     
-							<form>
-								<div class="row">
-									<div class="form-group col-md-8 col-md-offset-2">
-										<input type="text" class="form-control" id="MapName" aria-describedby="mapName" placeholder="Nombre del mapa">
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-md-8 col-md-offset-2">
-										<input type="text" class="form-control" id="MapAuthor" aria-describedby="mapAuthor" placeholder="Autor">
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-md-8 col-md-offset-2">
-										<input type="email" class="form-control" id="MapEmail" aria-describedby="mapEmail" placeholder="Email">
-									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-md-8 col-md-offset-2">
-										<input id="autocomplete" class="controls form-control" type="text" placeholder="Ingresar lugar">
-									</div>
-								</div>
-								<div class="row">
-									<div id="mapModal" class="col-md-10 col-md-offset-1"></div>
-
-								</div>
-								<div class="row">
-									<div class="submit-button">
-										<button type="submit" class="btn btn-primary" onclick="getFormData()">Crear Mapa</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-md-8 col-md-offset-2" style="margin-top: 10px;">
+                            <input type="text-area" class="form-control" id="MapDescription" aria-describedby="mapDescription" placeholder="Descripción">
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="submit-button">
+                               <button type="submit" class="btn btn-primary" onclick="getFormData()">Crear Mapa</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
 	</body>
 </html>
