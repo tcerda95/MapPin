@@ -24,6 +24,7 @@
 	width: 100%;
 }
 
+<<<<<<< HEAD
 .map-info {
 	position: absolute;
     z-index: 9999 !important;
@@ -55,4 +56,22 @@
 
 .map-description.ng-hide {
   opacity: 0;
+}
+
+.iw-container.iw-title {
+   font-family: 'Open Sans Condensed', sans-serif;
+   font-size: 22px;
+   font-weight: 400;
+   padding: 10px;
+   background-color: #48b5e9;
+   color: white;
+   margin: 1px;
+   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+}
+
+.gm-style-iw {
+   width: 350px !important;
+   top: 0 !important;
+   left: 0 !important;
+   border-radius: 2px 2px 0 0;
 }
