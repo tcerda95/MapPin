@@ -258,3 +258,13 @@ input[type="radio"]:focus + span {
 .ok-button {
 	background-color: #43cc04;
 }
+
+.pin-box {
+	position: absolute;
+	right: -250px;
+	top: 60px;
+	height: 400px;
+	width: 300px;
+	background-color: red;
+	z-index: 1 !important;
+}

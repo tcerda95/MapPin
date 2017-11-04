@@ -61,6 +61,9 @@ angular.module('mappinApp', ['ngAnimate'])
            }
       );
 
+	$scope.showPinBox = function() {
+		$('#pin-box')
+	};
 
 	this.showDescription = false;
 
