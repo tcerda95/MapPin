@@ -62,13 +62,15 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div ng-if="mapCtrl.infomap.tabs.length > 0" class="tabs">
-						<span ng-if="editMode" class="add-tab add-tab-left" ng-click="mapCtrl.addTabLeft()">
+						<span ng-if="editMode" class="add-tab" ng-click="mapCtrl.addTab(0)">
 							<span class="glyphicon glyphicon-plus"></span>
 						</span>
-						<span ng-class="{'selected': mapCtrl.selectedTab == $index}" ng-repeat="tabItem in mapCtrl.infomap.tabs" class="tab" ng-bind="tabItem.name" ng-click="mapCtrl.clickedTab($index)">
-						</span>
-						<span ng-if="editMode" class="add-tab add-tab-right" ng-click="mapCtrl.addTabRight()">
-							<span class="glyphicon glyphicon-plus"></span>
+						<span ng-repeat="tabItem in mapCtrl.infomap.tabs">
+							<span ng-class="{'selected': mapCtrl.selectedTab == $index}" class="tab" ng-bind="tabItem.name" ng-click="mapCtrl.clickedTab($index)">
+							</span>
+							<span ng-if="editMode" class="add-tab" ng-click="mapCtrl.addTab($index + 1)">
+								<span class="glyphicon glyphicon-plus"></span>
+							</span>
 						</span>
 					</div>
 					<div ng-if="editMode && mapCtrl.infomap.tabs.length == 0" class="tabs">
@@ -76,18 +78,6 @@
 							<span class="glyphicon glyphicon-plus"></span><span>Agregar una sección</span>
 						</span>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12" style="text-align: center;">
-				  <span class="star-rating">
-					<span class="fa fa-star-o" data-rating="1"></span>
-					<span class="fa fa-star-o" data-rating="2"></span>
-					<span class="fa fa-star-o" data-rating="3"></span>
-					<span class="fa fa-star-o" data-rating="4"></span>
-					<span class="fa fa-star-o" data-rating="5"></span>
-					<input type="hidden" name="whatever1" class="rating-value" value="0">
-				  </span>
 				</div>
 			</div>
 		</div>
@@ -285,7 +275,9 @@
             </div>
 
   </body>
-
+	<footer>
+		<span class="glyphicon glyphicon-globe"></span><span class="footer-text">Mappin. 2017.</span>
+	</footer>
    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

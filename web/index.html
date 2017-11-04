@@ -40,6 +40,11 @@
 					</button>
 					<a class="navbar-brand" rel="home" href="index.html"><img style="max-width:130px; margin-top: 2px;" src="img/logo.png"></a>
 				</div>
+				  <form class="navbar-form navbar-left">
+					<div class="form-group">
+					  <input type="text" class="form-control" placeholder="Buscar mapas">
+					</div>
+				  </form>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal">Crear mapa</button></li>
@@ -65,7 +70,7 @@
 						</div>
 
 						<div class="map-image">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center={{map.initial.latLng.lat}},{{map.initial.latLng.lng}}&zoom={{map.initial.zoom}}&size=600x300&maptype=roadmap
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center={{map.initial.latLng.lat}},{{map.initial.latLng.lng}}&zoom={{map.initial.zoom}}&size=600x300&maptype=terrain
 									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
 						</div>
 						<div class="map-card-description" ng-bind="maps[$index].description">
@@ -131,4 +136,7 @@
         </div>
     </div>
 	</body>
+		<footer>
+		<span class="glyphicon glyphicon-globe"></span><span class="footer-text">Mappin. 2017.</span>
+	</footer>
 </html>

@@ -43,12 +43,11 @@
 
 .create-map {
 	margin-top: 5px;
-    background-color: #06908f !important;
+    background-color: #0049A0 !important;
     background-image: none !important;
     text-shadow: none !important;
     color: #fff !important;
     font-size: 1.3em !important;
-    letter-spacing: 1px;
     border: none !important;
 }
 
@@ -78,5 +77,18 @@
 }
 
 .navbar {
-	margin-bottom: 10px !important;
+	margin-bottom: 0;
+}
+
+footer {
+	margin: 25px;
+	margin-top: 30px;
+	color: #7b7b7b;
+	font-weight: 400;
+	border-top: solid 1px #e7e7e7;
+	padding-top: 10px;
+}
+
+footer .footer-text {
+	margin-left: 10px;
 }
