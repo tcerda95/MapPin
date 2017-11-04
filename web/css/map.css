@@ -30,7 +30,7 @@
 
 .map-info {
 	position: absolute;
-    z-index: 9999 !important;
+    z-index: 1 !important;
     margin: 10px;
 }
 
@@ -125,7 +125,7 @@
 #autocomplete {
 	position: absolute;
     right: 10px;
-    z-index: 9999 !important;
+    z-index: 1 !important;
     margin: 10px;
 	width: auto !important;
 }
