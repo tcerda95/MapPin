@@ -80,7 +80,7 @@ public class MapPinController {
 			Response.status(Status.BAD_REQUEST);
 			System.out.println("MAP DTO ES NULL");
 		}
-				
+		
 		Author author = authorService.getAuthorByEmail(mapDto.getAuthor().getEmail());
 
 		if (author == null)
@@ -89,8 +89,10 @@ public class MapPinController {
 		MapPinned map = mapPinnedService.createMap(mapDto.getName(), mapDto.getDescription(), author.getId(), 
 				mapDto.getInitial().getLatLng().getLat(), mapDto.getInitial().getLatLng().getLng(), mapDto.getInitial().getZoom());
 
-		map.setTabs(insertMapPinTabs(mapDto.getTabs(), map.getId()));
-		
+		if (mapDto.getTabs() == null)
+			map.setTabs(new ArrayList<>());
+		else
+			map.setTabs(insertMapPinTabs(mapDto.getTabs(), map.getId()));
 		
 		if (mapDto.hasId() && mapPinnedService.getMapById(mapDto.getId()) != null)
 			map = mapPinnedService.replaceMap(mapDto.getId(), map.getId());
