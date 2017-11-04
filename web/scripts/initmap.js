@@ -1,3 +1,5 @@
+editMode = false;
+
 function initMap() {
       var uluru = {lat: -33, lng: -55};
 

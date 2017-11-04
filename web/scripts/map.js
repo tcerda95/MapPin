@@ -22,15 +22,23 @@ var icons = {
 var markers = [];
 selectedlatLng = {lat: 0, lng:0};
 var myUrl;
-editMode = false;
 
 angular.module('mappinApp', ['ngAnimate'])
-	.controller('MapController', function($http) {
+	.controller('MapController', function($scope, $http) {
     	this.selectedTab = 0;
       this.infomap = {};
       var id = getParameterByName('id');
-		editMode = getParameterByName('edit')
-      
+		$scope.editMode = editMode;
+//		editMode = getParameterByName('edit')
+      $scope.enableEditMode = function() {
+		  $scope.editMode = true;
+		  editMode = true;
+	  }
+	  
+	  $scope.disableEditMode = function() {
+		  $scope.editMode = false;
+		  editMode = false;
+	  }
 		console.log("Id is" + id);
       myUrl = "http://localhost:8080/map/" + id;
       console.log(myUrl);

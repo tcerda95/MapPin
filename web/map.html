@@ -12,7 +12,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
 
-<script src="path/to/javascripts/bootstrap-rating-input.min.js" type="text/javascript"></script>
+
 		<script src="scripts/map.js"></script>
 	</head>
 	<body ng-controller="MapController as mapCtrl">
@@ -45,24 +45,24 @@
 						</div>
 					</div>
 					<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">
-					<div class="edit-button" ng-show="!editMode" ng-click="editMode = true">Editar<span class="glyphicon glyphicon-pencil"></span></div>
-					<div class="ok-button edit-button" ng-show="editMode" ng-click="editMode = false">Listo<span class="glyphicon glyphicon-ok"></span></div>
+					<div class="edit-button" ng-show="!editMode" ng-click="enableEditMode()">Editar<span class="glyphicon glyphicon-pencil"></span></div>
+					<div class="ok-button edit-button" ng-show="editMode" ng-click="disableEditMode()">Listo<span class="glyphicon glyphicon-ok"></span></div>
 					<div id="map" class="panel panel-default"></div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div ng-if="mapCtrl.infomap.tabs.length > 0" class="tabs">
-						<span class="add-tab add-tab-left" ng-click="mapCtrl.addTabLeft()">
+						<span ng-if="editMode" class="add-tab add-tab-left" ng-click="mapCtrl.addTabLeft()">
 							<span class="glyphicon glyphicon-plus"></span>
 						</span>
 						<span ng-class="{'selected': mapCtrl.selectedTab == $index}" ng-repeat="tabItem in mapCtrl.infomap.tabs" class="tab" ng-bind="tabItem.name" ng-click="mapCtrl.clickedTab($index)">
 						</span>
-						<span class="add-tab add-tab-right" ng-click="mapCtrl.addTabRight()">
+						<span ng-if="editMode" class="add-tab add-tab-right" ng-click="mapCtrl.addTabRight()">
 							<span class="glyphicon glyphicon-plus"></span>
 						</span>
 					</div>
-					<div ng-if="mapCtrl.infomap.tabs.length == 0" class="tabs">
+					<div ng-if="editMode && mapCtrl.infomap.tabs.length == 0" class="tabs">
 						<span class="add-tab add-tab-right" ng-click="mapCtrl.addTabRight()">
 							<span class="glyphicon glyphicon-plus"></span><span>Agregar una sección</span>
 						</span>
