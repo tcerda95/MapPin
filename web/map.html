@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html ng-app="mappinApp">
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <link rel="stylesheet" href="css/map.css">
-	  	  <link rel="stylesheet" href="css/index.css">
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/map.css">
+		<link rel="stylesheet" href="css/index.css">
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+				crossorigin="anonymous"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
 
-	  
-    <script src="scripts/map.js"></script>
-  </head>
-  <body ng-controller="MapController as mapCtrl">
-	 		<!-- Static navbar -->
+
+		<script src="scripts/map.js"></script>
+	</head>
+	<body ng-controller="MapController as mapCtrl">
+		<!-- Static navbar -->
 		<nav class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -38,36 +38,105 @@
 				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
-	  
-	<div class="container-fluid map-box ">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="map-info">
-					<div class="map-title" ng-bind="mapCtrl.infomap.name" ng-mouseover="mapCtrl.titleHover(true)" ng-mouseleave="mapCtrl.titleHover(false)">
+
+		<div class="container-fluid map-box ">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="map-info">
+						<div class="map-title" ng-bind="mapCtrl.infomap.name" ng-mouseover="mapCtrl.titleHover(true)" ng-mouseleave="mapCtrl.titleHover(false)">
+						</div>
+						<div class="map-description" ng-bind="mapCtrl.infomap.description" ng-show="mapCtrl.showDescription">
+						</div>
 					</div>
-					<div class="map-description" ng-bind="mapCtrl.infomap.description" ng-show="mapCtrl.showDescription">
+					<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">    
+					<div id="map" class="panel panel-default"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div ng-if="mapCtrl.infomap.tabs.length > 0" class="tabs">
+						<span class="add-tab add-tab-left" ng-click="mapCtrl.addTabLeft()">
+							<span class="glyphicon glyphicon-plus"></span>
+						</span>
+						<span ng-class="{'selected': mapCtrl.selectedTab == $index}" ng-repeat="tabItem in mapCtrl.infomap.tabs" class="tab" ng-bind="tabItem.name" ng-click="mapCtrl.clickedTab($index)">
+						</span>
+						<span class="add-tab add-tab-right" ng-click="mapCtrl.addTabRight()">
+							<span class="glyphicon glyphicon-plus"></span>
+						</span>
+					</div>
+					<div ng-if="mapCtrl.infomap.tabs.length == 0" class="tabs">
+						<span class="add-tab add-tab-right">
+							<span class="glyphicon glyphicon-plus"></span>
+						</span>
 					</div>
 				</div>
-				<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">    
-				<div id="map" class="panel panel-default"></div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div ng-if="mapCtrl.infomap.tabs.length > 0" class="tabs">
-					<span class="add-tab add-tab-left ">
-						<span class="glyphicon glyphicon-plus"></span>
-					</span>
-					<span ng-class="{'selected': mapCtrl.selectedTab == $index}" ng-repeat="tabItem in mapCtrl.infomap.tabs" class="tab" ng-bind="tabItem.name" ng-click="mapCtrl.clickedTab($index)">
-					</span>
-					<span class="add-tab add-tab-right">
-						<span class="glyphicon glyphicon-plus"></span>
-					</span>
+
+
+		<div class="modal fade" id="marker-modal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="row">
+							<div class="modal-title">
+								<h2 style="text-align: center;">Crear un Pin</h2> 
+							</div>
+						</div>  
+						<div class="row">
+							<input type="hidden" name="destination" />
+						</div>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<label path="subject">Hito:</label>
+								<input type="text" placeholder="Nombre del hito" class="form-control alumnia-input" id="hito"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1" style="margin-top: 8px;">
+								<label path="subject">Descripción:</label>
+								<textarea placeholder="Descripcion..." rows="10" cols="50" class="form-control" id="hitodesc"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div style="margin-top: 8px;text-align: center;">  
+								<input type="button" class="btn btn-info" onclick="markerCreate()" value="Crear"/>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div ng-if="mapCtrl.infomap.tabs.length == 0" class="tabs">
-					<span class="add-tab add-tab-right">
-						<span class="glyphicon glyphicon-plus"></span>
-					</span>
+			</div>
+		</div>
+
+		<div id="createTabModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="modal-title">
+											<h1>Crear nueva sección</h1> 
+										</div>
+									</div>     
+								</div>
+								<form>
+									<div class="row">
+										<div class="form-group col-md-8 col-md-offset-2">
+											<input type="text" class="form-control" id="tabName" aria-describedby="tabName" placeholder="Nombre de la sección">
+										</div>
+									</div>
+									<div class="row">
+										<div class="submit-button">
+											<button type="submit" class="btn btn-primary" ng-click="mapCtrl.submitNewSection()">Crear Sección</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -165,7 +234,6 @@
 
 
   <script src="scripts/map.js"></script>
-
 
 
 </html>

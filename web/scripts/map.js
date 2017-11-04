@@ -10,6 +10,7 @@ var icons = {
 }
 
 angular.module('mappinApp', ['ngAnimate'])
+
   .controller('MapController', function() {
   this.selectedTab = 0;
   this.infomap = 
@@ -96,8 +97,6 @@ function markerCreate() {
 
 
 
-
-
 function addPin(pin){
       console.log("Calling me")
       var contentString = '<div id="iw-container">' +
@@ -121,8 +120,8 @@ function addPin(pin){
                 icon: icons[pin.type],
                 title: pin.name
             });
-
-
+	
+		markers.push(marker);
 
       marker.addListener('mouseover', function() {
               infowindow.open(map, marker);   
