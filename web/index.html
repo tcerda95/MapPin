@@ -55,7 +55,7 @@
 			<div ng-repeat="map in maps">
 				<div class="clearfix" ng-if="$index % 3 == 0"></div>
 				<div class="col-md-4">
-					<div class="map-card" ng-click="homeCtrl.clickedMap($index)">
+					<div class="map-card" ng-click="homeCtrl.clickedMap(map.id)">
 						<div class="map-name">
 							{{map.name}}
 						</div>
@@ -74,9 +74,6 @@
 
 
 		<div id="createModal" class="modal fade" role="dialog">
-
-
-
 			<script src="scripts/create-form.js"></script>
 			<div class="modal-dialog">
 				<!-- Modal content-->
