@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import laboratorioC.model.Author;
+import laboratorioC.model.LatLng;
 import laboratorioC.model.MapPin;
 import laboratorioC.model.MapPinTab;
 import laboratorioC.model.MapPinned;
@@ -32,7 +33,8 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 		public MapPinned mapRow(ResultSet rs, int rowNum) throws SQLException {
 			final Author author = AuthorJdbcDao.authorMapper.mapRow(rs, rowNum);
 			
-			return new MapPinned(rs.getInt("mapid"), rs.getString("mapname"), rs.getString("mapdescription"), author);
+			return new MapPinned(rs.getInt("mapid"), rs.getString("mapname"), rs.getString("mapdescription"), author,
+					new LatLng(rs.getFloat("initlatitude"), rs.getFloat("initlongitude")), rs.getInt("initzoom"));
 		}
     };
     
@@ -74,16 +76,19 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 	}
 	
 	@Override
-	public MapPinned createMap(String name, String description, int authorId) {
+	public MapPinned createMap(String name, String description, int authorId, float initLatitude, float initLongitude, int zoom) {
 		final Map<String, Object> args = new HashMap<>();
 		
 		args.put("authorname", name);
 		args.put("description", description);
 		args.put("authorid", authorId);
+		args.put("initlatitude", initLatitude);
+		args.put("initLongitude", initLongitude);
+		args.put("initzoom", zoom);
 		
 		final Number id = jdbcInsert.executeAndReturnKey(args);
 		
-		return new MapPinned(id.intValue(), name, description, authorDao.getAuthorById(authorId));
+		return new MapPinned(id.intValue(), name, description, authorDao.getAuthorById(authorId), new LatLng(initLatitude, initLongitude), zoom);
 	}
 
 }

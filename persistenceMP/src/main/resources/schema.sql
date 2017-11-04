@@ -1,13 +1,16 @@
 CREATE TABLE IF NOT EXISTS authors (
 	authorid SERIAL PRIMARY KEY,
 	authorname VARCHAR(512) NOT NULL,
-	email VARCHAR(512) NOT NULL
+	email VARCHAR(512) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS maps (
 	mapid SERIAL PRIMARY KEY,
 	mapname VARCHAR(512) NOT NULL,
 	mapdescription VARCHAR(512) NOT NULL,
+	initlatitude FLOAT NOT NULL,
+	initlongitude FLOAT NOT NULL,
+	initzoom INTEGER NOT NULL,
 	authorid INTEGER REFERENCES authors(authorid) NOT NULL
 );
 
