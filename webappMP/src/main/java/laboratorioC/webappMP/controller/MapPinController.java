@@ -57,6 +57,9 @@ public class MapPinController {
 	@GET
 	@Path("/search")
 	public Response getMyByName(@QueryParam("name") final String name) {
+		if (name == null || name.length() == 0)
+			return Response.ok(new MapListDTO(new ArrayList<>())).build();
+		
 		final List<MapPinned> map = mapPinnedService.getMapsByName(name);
 		return Response.ok(new MapListDTO(map)).build();
 	}

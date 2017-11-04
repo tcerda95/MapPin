@@ -42,7 +42,7 @@
 				</div>
 				  <form class="navbar-form navbar-left">
 					<div class="form-group">
-					  <input type="text" class="form-control" placeholder="Buscar mapas">
+					  <input id="search-input" ng-model="search.name" type="text" class="form-control" placeholder="Buscar mapas">
 					</div>
 				  </form>
 				<div id="navbar" class="navbar-collapse collapse">
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 
-			<div ng-repeat="map in maps">
+			<div ng-repeat="map in maps | filter:search:strict">
 				<div class="clearfix" ng-if="$index % 3 == 0"></div>
 				<div class="col-md-4">
 					<div class="map-card" ng-click="homeCtrl.clickedMap(map.id)">

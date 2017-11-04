@@ -8,12 +8,14 @@ function initMap() {
 	
 angular.module('mappinApp', [])
 	.controller('HomeController', function($scope, $http, $location) {
-		$scope.maps =[]
+		$scope.maps = [];
+        
 		$http.get('http://localhost:8080/map').
         then(function(response) {
 			console.log(response.data.maps);
-			for(var i =0; i < response.data.maps.length; i++)
+			for(var i = 0; i < response.data.maps.length; i++) {
 				$scope.maps.push(response.data.maps[i]);
+            }
 			console.log($scope.maps);
         });
 	
