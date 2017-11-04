@@ -92,17 +92,24 @@ angular.module('mappinApp', ['ngAnimate'])
 		});
 	};
 
+
+  function persist(myself){
+    $http.post("http://localhost:8080/map", myself.infomap).then(function(){
+      console.log("POSTED!");
+    })
+  }
+
 	var leftTabAdd = false;
 	this.addTabLeft = function() {
 		leftTabAdd = true;
 		$('#createTabModal').modal('show');	
-	};
+ 	};
 
 
 	this.addTabRight = function() {
 		leftTabAdd = false;
 		$('#createTabModal').modal('show');	
-	};
+ 	};
 
 	this.submitNewSection = function() {
 		var tabName = $('#tabName').val();
@@ -114,7 +121,10 @@ angular.module('mappinApp', ['ngAnimate'])
 		else {
 			this.infomap.tabs.push(newTab);
 		}
-		$('#tabName').val('');
+    
+    persist(this);
+		
+    $('#tabName').val('');
 		$('#createTabModal').modal('hide');
 	};
 
@@ -150,10 +160,7 @@ angular.module('mappinApp', ['ngAnimate'])
 
     console.log("About to log " + myUrl);
     console.log(this.infomap);
-    $http.post("http://localhost:8080/map", this.infomap).then(function(){
-      console.log("POSTED!");
-    })
-
+    persist(this);
 		addPin(pin);
 	};
 	
