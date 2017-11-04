@@ -69,7 +69,7 @@ function initMap() {
                   ]
         });
           
-          var input = /** @type {!HTMLInputElement} */(document.getElementById('autocomplete'));
+        var input = /** @type {!HTMLInputElement} */(document.getElementById('autocomplete'));
 
         var types = document.getElementById('type-selector');
 
