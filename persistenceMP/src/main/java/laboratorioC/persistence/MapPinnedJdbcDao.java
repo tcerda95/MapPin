@@ -2,6 +2,7 @@ package laboratorioC.persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +73,7 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 	}
 
     private List<MapPin> getPinsFromTabId(int tabId) {
-		return jdbcTemplate.query("SELECT pinid, pinname, pindescription, category, latitude, longitude FROM pins NATURAL JOIN tabs WHERE tabid = ?", MapPinJdbcDao.pinMapper, tabId);
+		return jdbcTemplate.query("SELECT pinid, pinname, pindescription, category, imageurl, latitude, longitude FROM pins NATURAL JOIN tabs WHERE tabid = ?", MapPinJdbcDao.pinMapper, tabId);
 	}
 	
 	@Override
@@ -90,6 +91,24 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 		final Number id = jdbcInsert.executeAndReturnKey(args);
 		
 		return new MapPinned(id.intValue(), name, description, authorDao.getAuthorById(authorId), new LatLng(initLatitude, initLongitude), zoom);
+	}
+
+	@Override
+	public List<MapPinned> getMaps() {
+		final List<Integer> mapsIds = jdbcTemplate.queryForList("SELECT mapid FROM maps", Integer.class);
+		final List<MapPinned> maps = new ArrayList<>(mapsIds.size());
+		
+		for (Integer id : mapsIds)
+			maps.add(getMapById(id));
+		
+		return maps;
+	}
+
+	@Override
+	public MapPinned replaceMaps(int origin, int newMap) {
+		jdbcTemplate.update("DELETE FROM maps WHERE mapid = ?", origin);
+		jdbcTemplate.update("UPDATE maps SET mapid = ? WHERE mapid = ?", origin, newMap);
+		return getMapById(origin);
 	}
 
 }

@@ -10,7 +10,7 @@ import laboratorioC.model.MapPinned;
 
 @XmlRootElement
 public class MapPinnedDTO {
-	private int id;
+	private int id = -1;
 	private String name;
 	private String description;
 	private AuthorDTO author;
@@ -28,6 +28,10 @@ public class MapPinnedDTO {
 		this.setInitial(new InitialDTO(new LatLngDTO(mapPinned.getInitial()), mapPinned.getZoom()));
 	}
 
+	public boolean hasId() {
+		return id != -1;
+	}
+	
 	public int getId() {
 		return id;
 	}
