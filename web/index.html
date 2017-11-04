@@ -42,7 +42,7 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="active"><a href="#">Inicio</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><button class="create-map btn btn-default" data-toggle="modal" data-target="#createModal">Crear mapa</button></li>
@@ -113,8 +113,9 @@
 
 
         <div id="createModal" class="modal fade" role="dialog">
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"
-        async defer></script>
+     
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"></script>
+    
     <script src="scripts/create-form.js"></script>
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -135,6 +136,11 @@
                         <div class="row">
                           <div class="form-group col-md-8 col-md-offset-2">
                             <input type="text" class="form-control" id="MapAuthor" aria-describedby="mapAuthor" placeholder="Autor">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-md-8 col-md-offset-2">
+                            <input type="email" class="form-control" id="MapEmail" aria-describedby="mapEmail" placeholder="Email">
                           </div>
                         </div>
                         <div class="row">
