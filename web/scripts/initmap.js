@@ -104,7 +104,7 @@ function initMap() {
         });
 
       map.addListener('rightclick', function(mouseEvent) {
-          selectedLatLng = mouseEvent.latLng;
+          selectedlatLng = mouseEvent.latlng;
           
           // Clear values
           $("#hito").val('');
