@@ -1,3 +1,13 @@
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 var icons = {
 	religion: 'img/praying.png',
 	science: 'img/atomic.png',
@@ -8,13 +18,35 @@ var icons = {
 	art: 'img/paint-board-and-brush.png',
 	society: 'img/holding-hands-in-a-circle.png'  
 }
+
 var markers = [];
 selectedlatLng = {lat: 0, lng:0};
 
 angular.module('mappinApp', ['ngAnimate'])
+	.controller('MapController', function($http) {
+    	this.selectedTab = 0;
+      this.infomap = {};
+      var id = getParameterByName('id');
 
-	.controller('MapController', function() {
-	this.selectedTab = 0;
+      console.log("Id is" + id);
+      myUrl = "http://localhost:8080/map/" + id;
+      console.log(myUrl);
+      var myself = this;
+
+      $http.get(myUrl).then(function(response){
+            console.log("HOOOOOOO");
+            console.log(response);
+            myself.infomap = response.data;
+
+            myself.infomap.tabs[myself.selectedTab].pins.forEach(function(item, index){
+              addPin(item);
+            });
+
+           }, function(response){
+            console.log("Error?");  
+           }
+      );
+/*
 	this.infomap = 
 		{name: "Historia Argentina 1910",
 		 description: "Un mapa que prueba lo bueno que es mappin para aprender todo tipo de cosas en un modo interactivo, enriquecedor, blockchain",
@@ -41,16 +73,13 @@ angular.module('mappinApp', ['ngAnimate'])
 		}
 	;
 
-
+*/
 	this.showDescription = false;
 
 	this.titleHover = function(value) {
 		this.showDescription = value;
 	}
 
-	this.infomap.tabs[this.selectedTab].pins.forEach(function(item, index){
-		addPin(item);
-	});
 
 	this.clickedTab = function(index) {
 		if (this.selectedTab == index)
