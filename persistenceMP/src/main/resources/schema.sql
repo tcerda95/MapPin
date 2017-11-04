@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS maps (
 	mapid SERIAL PRIMARY KEY,
 	mapname VARCHAR(512) NOT NULL,
 	mapdescription VARCHAR(512) NOT NULL,
+	initlatitude FLOAT NOT NULL,
+	initlongitude FLOAT NOT NULL,
+	initzoom INTEGER NOT NULL,
 	authorid INTEGER REFERENCES authors(authorid) NOT NULL
 );
 

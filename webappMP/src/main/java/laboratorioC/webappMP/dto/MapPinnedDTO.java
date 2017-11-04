@@ -14,6 +14,7 @@ public class MapPinnedDTO {
 	private String name;
 	private String description;
 	private AuthorDTO author;
+	private InitialDTO initial;
 	private List<MapPinTabDTO> tabs;
 
 	public MapPinnedDTO() {}
@@ -24,6 +25,7 @@ public class MapPinnedDTO {
 		this.description = mapPinned.getDescription();
 		this.author = new AuthorDTO(mapPinned.getAuthor());
 		this.tabs = mapPinTabs(mapPinned.getTabs());
+		this.setInitial(new InitialDTO(new LatLngDTO(mapPinned.getInitial()), mapPinned.getZoom()));
 	}
 
 	public int getId() {
@@ -73,5 +75,13 @@ public class MapPinnedDTO {
 			list.add(new MapPinTabDTO(tab));
 		
 		return list;
+	}
+
+	public InitialDTO getInitial() {
+		return initial;
+	}
+
+	public void setInitial(InitialDTO initial) {
+		this.initial = initial;
 	}
 }
