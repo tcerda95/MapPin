@@ -1,28 +1,12 @@
-angular.module('mappinApp', [])
-	.controller('MapController', function() {
-		this.map = 
-			{name: "Historia Argentina 1810", 
-			 tabs: [{name: "1920"}, {name: "1029"}]
-			}
-		;
-	})
-;
+function getFormData() {
+    var mapName = document.getElementById("MapName").value;
+    var author = document.getElementById("MapAuthor").value;
+    console.log(mapName);
 
-//$('#myModal').modal({ show: false})
+}
 
-    var selectedLatLng = {lat: 0, lng:0};
-
-    function markerCreate(){
-    new google.maps.Marker({
-            position: selectedLatLng,
-            map: map
-         });
-          
-      $('#marker-modal').modal('hide')
-    }
-
-    function initMap() {
-       // Create a map object and specify the DOM element for display.
+function initMap() {
+        // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -33.867, lng: 151.195},
           zoom: 8
@@ -63,9 +47,4 @@ angular.module('mappinApp', [])
         
         });
 
-      map.addListener('click', function(mouseEvent) {
-          selectedLatLng = mouseEvent.latLng;
-          $('#marker-modal').modal('show')
-      });
-
-    }
+      }
