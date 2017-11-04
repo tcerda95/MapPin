@@ -1,13 +1,13 @@
 package laboratorioC.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import laboratorioC.model.MapPinTab;
 import laboratorioC.persistence.MapPinTabDao;
 
-@Service
-public class MapPinTabServiceImpl implements MapPinTabDao {
+@Component
+public class MapPinTabServiceImpl implements MapPinTabService {
 
 	@Autowired
 	private MapPinTabDao mapPinTabDao;

@@ -23,7 +23,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan({ "laboratorioC.webappMP.controller", "laboratorioC.persistence", "laboratorioC.service" })
+@ComponentScan({ "laboratorioC.service", "laboratorioC.persistence", "laboratorioC.webappMP.controller" })
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 

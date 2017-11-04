@@ -67,15 +67,19 @@ public class HelloWorldController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/")
 	public Response createMap(final MapPinnedDTO mapDto) {
-		if (mapDto == null)
+		if (mapDto == null) {
 			Response.status(Status.BAD_REQUEST);
+			System.out.println("MAP DTO ES NULL");
+		}
 		
 		Author author = authorService.getAuthorByEmail(mapDto.getAuthor().getEmail());
 		
 		if (author == null)
 			author = authorService.createAuthor(mapDto.getAuthor().getName(), mapDto.getAuthor().getName());
 		
-		final MapPinned map = mapPinnedService.createMap(mapDto.getName(), mapDto.getDescription(), mapDto.getAuthor().getId());
+		final MapPinned map = mapPinnedService.createMap(mapDto.getName(), mapDto.getDescription(), mapDto.getAuthor().getId(), 
+				mapDto.getInitial().getLatLng().getLat(), mapDto.getInitial().getLatLng().getLng(), mapDto.getInitial().getZoom());
+		
 		map.setTabs(insertMapPinTabs(mapDto.getTabs(), map.getId()));
 		
 		final URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(map.getId())).build();

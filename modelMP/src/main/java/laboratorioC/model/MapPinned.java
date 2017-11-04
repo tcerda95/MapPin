@@ -7,21 +7,27 @@ public class MapPinned {
 	private final String name;
 	private final String description;
 	private final Author author;
+	private final LatLng initial;
+	private final int zoom;
 	private List<MapPinTab> tabs;
 	
-	public MapPinned(final int id, final String name, final String description, final Author author) {
+	public MapPinned(final int id, final String name, final String description, final Author author, final LatLng initial, int zoom) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.author = author;
+		this.initial = initial;
+		this.zoom = zoom;
 	}
 
-	public MapPinned(final int id, final String name, final String description, final Author author, final List<MapPinTab> tabs) {
+	public MapPinned(final int id, final String name, final String description, final Author author, final LatLng initial, int zoom, final List<MapPinTab> tabs) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.author = author;
 		this.tabs = tabs;
+		this.initial = initial;
+		this.zoom = zoom;
 	}
 	
 	public int getId() {
@@ -64,5 +70,13 @@ public class MapPinned {
 		final MapPinned other = (MapPinned) obj;
 
 		return other.getId() == getId();
+	}
+
+	public int getZoom() {
+		return zoom;
+	}
+
+	public LatLng getInitial() {
+		return initial;
 	}
 }
