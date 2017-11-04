@@ -70,3 +70,8 @@
     text-overflow: ellipsis;
     width: 100%;
 }
+
+.navbar-brand { 
+	padding: 0 !important;
+	padding-right: 10px !important;
+}
