@@ -6,7 +6,7 @@
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/modal-crear.css">
+		<link rel="stylesheet" type="text/css" href="css/modal-crear.css">
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -18,12 +18,8 @@
 				crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		
-		<script src="scripts/index.js"></script>
-        
-
+		<script src="scripts/index.js"></script>        
+				     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"></script>
 	</head>
 
 	<body ng-controller="HomeController as homeCtrl">
@@ -58,11 +54,13 @@
 					<div class="most-popular-title">Más destacados</div>
 				</div>
 			</div>
-			<div ng-repeat="map in homeCtrl.maps" ng-if="$index % 3 == 0" class="row">
+
+			<div ng-repeat="map in maps">
+				<div class="clearfix" ng-if="$index % 3 == 0"></div>
 				<div class="col-md-4">
-					<div class="map-card" ng-click="homeCtrl.testClick()">
+					<div class="map-card" ng-click="homeCtrl.clickedMap($index)">
 						<div class="map-name">
-							{{homeCtrl.maps[$index].name}}
+							{{map.name}}
 						</div>
 
 						<div class="map-image">
@@ -71,39 +69,7 @@
 									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
 									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
 						</div>
-						<div class="map-card-description" ng-bind="homeCtrl.maps[$index].description">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 1)">
-					<div class="map-card" ng-click="homeCtrl.testClick()">
-						<div class="map-name">
-							{{homeCtrl.maps[$index + 1].name}}
-						</div>
-
-						<div class="map-image">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
-									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
-									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
-						</div>
-						<div class="map-card-description" ng-bind="homeCtrl.maps[$index + 1].description">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 2)">
-					<div class="map-card" ng-click="homeCtrl.testClick()">
-						<div class="map-name">
-							{{homeCtrl.maps[$index + 2].name}}
-						</div>
-
-						<div class="map-image">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
-									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
-									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
-						</div>
-						<div class="map-card-description" ng-bind="homeCtrl.maps[$index + 2].description">
+						<div class="map-card-description" ng-bind="maps[$index].description">
 						</div>
 					</div>
 				</div>
@@ -112,57 +78,56 @@
 		</div> <!-- /container -->
 
 
-        <div id="createModal" class="modal fade" role="dialog">
-     
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"></script>
-    
-    <script src="scripts/create-form.js"></script>
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content content-modal-size">
-                <div class="modal-body">
-                  <div class="col-md-12">
-                      <div class="row">
-                          <div class="modal-title">
-                              <h1>Crear mapa</h1> 
-                          </div>
-                      </div>     
-                    <form>
-                        <div class="row">
-                            <div class="form-group col-md-8 col-md-offset-2">
-                            <input type="text" class="form-control" id="MapName" aria-describedby="mapName" placeholder="Nombre del mapa">
-                            </div>
-                        </div>
-                        <div class="row">
-                          <div class="form-group col-md-8 col-md-offset-2">
-                            <input type="text" class="form-control" id="MapAuthor" aria-describedby="mapAuthor" placeholder="Autor">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="form-group col-md-8 col-md-offset-2">
-                            <input type="email" class="form-control" id="MapEmail" aria-describedby="mapEmail" placeholder="Email">
-                          </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-8 col-md-offset-2">
-                                <input id="autocomplete" class="controls form-control" type="text" placeholder="Ingresar lugar">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div id="mapModal" class="col-md-10 col-md-offset-1"></div>
+		<div id="createModal" class="modal fade" role="dialog">
 
-                        </div>
-                        <div class="row">
-                            <div class="submit-button">
-                               <button type="submit" class="btn btn-primary" onclick="getFormData()">Crear Mapa</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            </div>
-        </div>
-      </div>
-        
+
+
+			<script src="scripts/create-form.js"></script>
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content content-modal-size">
+					<div class="modal-body">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="modal-title">
+									<h1>Crear mapa</h1> 
+								</div>
+							</div>     
+							<form>
+								<div class="row">
+									<div class="form-group col-md-8 col-md-offset-2">
+										<input type="text" class="form-control" id="MapName" aria-describedby="mapName" placeholder="Nombre del mapa">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-8 col-md-offset-2">
+										<input type="text" class="form-control" id="MapAuthor" aria-describedby="mapAuthor" placeholder="Autor">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-8 col-md-offset-2">
+										<input type="email" class="form-control" id="MapEmail" aria-describedby="mapEmail" placeholder="Email">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-8 col-md-offset-2">
+										<input id="autocomplete" class="controls form-control" type="text" placeholder="Ingresar lugar">
+									</div>
+								</div>
+								<div class="row">
+									<div id="mapModal" class="col-md-10 col-md-offset-1"></div>
+
+								</div>
+								<div class="row">
+									<div class="submit-button">
+										<button type="submit" class="btn btn-primary" onclick="getFormData()">Crear Mapa</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

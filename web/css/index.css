@@ -2,6 +2,7 @@
 	box-shadow: 0 0 10px #d2d2d2;
 	border-radius: 4px;
 	position: relative;
+	margin-bottom: 2em;
 }
 
 .map-card:hover {
