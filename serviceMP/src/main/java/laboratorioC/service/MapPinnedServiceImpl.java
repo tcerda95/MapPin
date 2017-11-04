@@ -18,8 +18,8 @@ public class MapPinnedServiceImpl implements MapPinnedService {
 	}
 
 	@Override
-	public MapPinned createMap(String name, String description, int authorId) {
-		return mapPinnedDao.createMap(name, description, authorId);
+	public MapPinned createMap(String name, String description, int authorId, float initLatitude, float initLongitude, int zoom) {
+		return mapPinnedDao.createMap(name, description, authorId, initLatitude, initLongitude, zoom);
 	}
 
 }

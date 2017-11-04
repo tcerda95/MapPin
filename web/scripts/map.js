@@ -10,6 +10,7 @@ var icons = {
 }
 
 angular.module('mappinApp', ['ngAnimate'])
+
   .controller('MapController', function() {
   this.selectedTab = 0;
   this.infomap = 
@@ -58,7 +59,19 @@ angular.module('mappinApp', ['ngAnimate'])
     this.infomap.tabs[this.selectedTab].pins.forEach(function(item, index){
       addPin(item);
     });
-  }
+  };
+	
+	var leftTabAdd = false;
+	this.addTabLeft = function() {
+		leftTabAdd = true;
+		$('#createTabModal').modal('show');	
+	};
+	
+	
+	this.addTabRight = function() {
+		leftTabAdd = false;
+		$('#createTabModal').modal('show');	
+	};
 })
 ;
 
@@ -96,8 +109,6 @@ function markerCreate() {
 
 
 
-
-
 function addPin(pin){
       console.log("Calling me")
       var contentString = '<div id="iw-container">' +
@@ -121,8 +132,8 @@ function addPin(pin){
                 icon: icons[pin.type],
                 title: pin.name
             });
-
-
+	
+		markers.push(marker);
 
       marker.addListener('mouseover', function() {
               infowindow.open(map, marker);   
@@ -190,6 +201,15 @@ function infowindowFormat(){
     if($('.iw-content').height() < 140){
       $('.iw-bottom-gradient').css({display: 'none'});
     }
-
-
 }
+
+$(function () {
+    $('.btn-radio').click(function(e) {
+        $('.btn-radio').not(this).removeClass('active')
+    		.siblings('input').prop('checked',false)
+            .siblings('.img-radio').css('opacity','0.5');
+    	$(this).addClass('active')
+            .siblings('input').prop('checked',true)
+    		.siblings('.img-radio').css('opacity','1');
+    });
+});

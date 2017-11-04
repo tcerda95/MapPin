@@ -4,5 +4,5 @@ import laboratorioC.model.MapPinned;
 
 public interface MapPinnedDao {
 	MapPinned getMapById(int id);
-	MapPinned createMap(String name, String description, int authorId);
+	MapPinned createMap(String name, String description, int authorId, float initLatitude, float initLongitude, int zoom);
 }
