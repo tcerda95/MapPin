@@ -43,7 +43,7 @@ angular.module('mappinApp', ['ngAnimate'])
             });
 
            }, function(response){
-            console.log("Error?");  
+              
            }
       );
 /*
