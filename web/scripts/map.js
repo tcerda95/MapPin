@@ -72,8 +72,21 @@ angular.module('mappinApp', ['ngAnimate'])
 		leftTabAdd = false;
 		$('#createTabModal').modal('show');	
 	};
-})
-;
+	
+	this.submitNewSection = function() {
+		var tabName = $('#tabName').val();
+		var newTab = {name: tabName, pins:[]}
+		if (leftTabAdd) {
+			this.infomap.tabs.unshift(newTab);
+			this.selectedTab++;
+		}
+		else {
+			this.infomap.tabs.push(newTab);
+		}
+		$('#tabName').val('');
+		$('#createTabModal').modal('hide');
+	};
+});
 
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
