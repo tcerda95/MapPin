@@ -21,6 +21,7 @@ var icons = {
 
 var markers = [];
 selectedlatLng = {lat: 0, lng:0};
+var myUrl;
 
 angular.module('mappinApp', ['ngAnimate'])
 	.controller('MapController', function($http) {
@@ -146,6 +147,13 @@ angular.module('mappinApp', ['ngAnimate'])
 			img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"
 		}     
 		this.infomap.tabs[this.selectedTab].pins.push(pin);
+
+    console.log("About to log " + myUrl);
+    console.log(this.infomap);
+    $http.post("http://localhost:8080/map", this.infomap).then(function(){
+      console.log("POSTED!");
+    })
+
 		addPin(pin);
 	};
 	
