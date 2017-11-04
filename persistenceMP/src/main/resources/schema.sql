@@ -1,4 +1,28 @@
-CREATE TABLE IF NOT EXISTS grantees (
-	granteeid SERIAL PRIMARY KEY,
-	name VARCHAR(64)
+CREATE TABLE IF NOT EXISTS authors (
+	authorid SERIAL PRIMARY KEY,
+	authorname VARCHAR(512) NOT NULL,
+	email VARCHAR(512) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS maps (
+	mapid SERIAL PRIMARY KEY,
+	mapname VARCHAR(512) NOT NULL,
+	mapdescription VARCHAR(512) NOT NULL,
+	authorid INTEGER REFERENCES authors(authorid) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tabs (
+	tabid SERIAL PRIMARY KEY,
+	tabname VARCHAR(512) NOT NULL,
+	mapid INTEGER REFERENCES maps(mapid) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pins (
+	pinid SERIAL PRIMARY KEY,
+	pinname VARCHAR(512) NOT NULL,
+	pindescription VARCHAR(512) NOT NULL,
+	category VARCHAR(64) NOT NULL,
+	latitude FLOAT NOT NULL,
+	longitude FLOAT NOT NULL,
+	tabid INTEGER REFERENCES tabs(tabid) NOT NULL
 );
