@@ -1,12 +1,12 @@
 package laboratorioC.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import laboratorioC.model.Author;
 import laboratorioC.persistence.AuthorDao;
 
-@Service
+@Component
 public class AuthorServiceImpl implements AuthorService {
 
 	@Autowired
