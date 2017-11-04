@@ -58,7 +58,7 @@
 					<span class="add-tab add-tab-left ">
 						<span class="glyphicon glyphicon-plus"></span>
 					</span>
-					<span ng-repeat="tabItem in mapCtrl.infomap.tabs" class="tab" ng-bind="tabItem.name">
+					<span ng-class="{'selected': mapCtrl.selectedTab == $index}" ng-repeat="tabItem in mapCtrl.infomap.tabs" class="tab" ng-bind="tabItem.name" ng-click="mapCtrl.clickedTab($index)">
 					</span>
 					<span class="add-tab add-tab-right">
 						<span class="glyphicon glyphicon-plus"></span>
