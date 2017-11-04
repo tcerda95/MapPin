@@ -38,3 +38,18 @@
 	background-image: none !important;
 	background-color: #fff !important;
 }
+
+.create-map {
+	margin-top: 5px;
+    background-color: #06908f !important;
+    background-image: none !important;
+    text-shadow: none !important;
+    color: #fff !important;
+    font-size: 1.3em !important;
+    letter-spacing: 1px;
+    border: none !important;
+}
+
+.create-map:hover {
+	background-color: #0ca4a5 !important;
+}

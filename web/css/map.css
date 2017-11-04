@@ -1,0 +1,25 @@
+.tabs {
+	display: flex;
+	justify-content: center;
+}
+
+.add-tab {
+	background-color: #f0f0f0;
+	padding: 10px;
+    font-weight: 600;
+    font-size: 1.3em;
+	margin: 0 5px;
+}
+
+.tab {
+	background-color: #f0f0f0;
+	padding: 10px;
+    font-weight: 600;
+    font-size: 1.3em;
+	margin: 0 5px;
+}
+
+#map {
+	height: 500px;
+	width: 100%;
+}
