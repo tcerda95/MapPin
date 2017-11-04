@@ -67,24 +67,24 @@ function getFormData() {
     console.log(lng);
     console.log(zoom);
 
-    
-    var xhr = new XMLHttpRequest();
-    var url = "http://localhost:8080/map";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        var json = JSON.parse(xhr.responseText);
-        console.log("algo en el if");
-    }
-    };
-    
-    var data = JSON.stringify({"name": mapName, 
+    var dataSend = JSON.stringify({"name": mapName, 
                                "author": {"name": authorName, "email": email},
                                "description": descr,
                                "tabs": null,
                                "initial": {"latLng": {"lat": lat , "lng": lng}, "zoom": zoom}
                               });
     
-    xhr.send(data);
+    $.ajax({
+        type: "POST",
+        headers: { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json' 
+        },
+        url: "http://localhost:8080/map",
+        data: dataSend,
+        dataType: "json"
+    })
+    .done(function(response) {
+        window.location.href = 'map.html?id=' + response.id + '&edit=true';
+    });    
 }
