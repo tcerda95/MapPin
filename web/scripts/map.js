@@ -1,4 +1,14 @@
-  $('#myModal').modal({ show: false})
+angular.module('mappinApp', [])
+	.controller('MapController', function() {
+		this.map = 
+			{name: "Historia Argentina 1810", 
+			 tabs: [{name: "1920"}, {name: "1029"}]
+			}
+		;
+	})
+;
+
+//$('#myModal').modal({ show: false})
 
     var selectedLatLng = {lat: 0, lng:0};
 

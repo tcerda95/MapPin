@@ -1,26 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mappinApp">
   <head>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/map.css">
+	  
+	  		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+				crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
 
-    <style>
-       #map {
-        height: 500px;
-        width: 100%;
-       }
-    </style>
+	  
+    <script src="scripts/map.js"></script>
   </head>
-  <body>
-    <h3>My Google Maps Demo</h3>
-
-    
+  <body ng-controller="MapController as mapCtrl">
     <input id="autocomplete" type="text" size="50" placeholder="Anything you want!">    
-
-
-
-<div id="map"></div>
+	<div class="map-box">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="map"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div ng-if="mapCtrl.map.tabs.length > 0" class="tabs">
+					<span class="add-tab add-tab-left ">
+						<span class="glyphicon glyphicon-plus"></span>
+					</span>
+					<span ng-repeat="tabItem in mapCtrl.map.tabs" class="tab">
+						{{tabItem.name}}
+					</span>
+					<span class="add-tab add-tab-right">
+						<span class="glyphicon glyphicon-plus"></span>
+					</span>
+				</div>
+				<div ng-if="mapCtrl.map.tabs.length == 0" class="tabs">
+					<span class="add-tab add-tab-right">
+						<span class="glyphicon glyphicon-plus"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
           <div class="modal fade" id="marker-modal">
@@ -58,14 +79,7 @@
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-
-
-    <script src="scripts/map.js"></script>
-
-    
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE&libraries=places&callback=initMap">
     </script>
-
-
 
 </html>
