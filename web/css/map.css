@@ -259,12 +259,36 @@ input[type="radio"]:focus + span {
 	background-color: #43cc04;
 }
 
-.pin-box {
+#pin-box {
 	position: absolute;
-	right: -250px;
+	right: 25px;
 	top: 60px;
 	height: 400px;
 	width: 300px;
-	background-color: red;
 	z-index: 1 !important;
+	border-radius: 4px;
+	overflow-y: scroll;
+}
+
+.pin-item:hover {
+	cursor: pointer;
+	background-color: rgba(202, 202, 202, 0.93);
+}
+
+.pin-item {
+	display: flex;
+	justify-content: center;
+	align-items: center ;
+	padding: 8px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.9)
+}
+
+.pin-name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	padding: 10px;
+	border-radius: 4px;
 }

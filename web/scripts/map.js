@@ -27,6 +27,7 @@ angular.module('mappinApp', ['ngAnimate'])
 	.controller('MapController', function($scope, $http) {
     	this.selectedTab = 0;
       this.infomap = {};
+	$scope.icons = icons;
       var id = getParameterByName('id');
 		$scope.editMode = editMode;
 //		editMode = getParameterByName('edit')
@@ -61,16 +62,16 @@ angular.module('mappinApp', ['ngAnimate'])
            }
       );
 
-	$scope.showPinBox = function() {
-		$('#pin-box')
-	};
-
 	this.showDescription = false;
 
 	this.titleHover = function(value) {
 		this.showDescription = value;
 	}
-
+	
+	this.focusOnCoordinates = function(latLng) {
+		map.setCenter(latLng);
+       map.setZoom(7); 
+	}
 
 	this.clickedTab = function(index) {
 		if (this.selectedTab == index)
