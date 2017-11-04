@@ -6,6 +6,7 @@
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/modal-crear.css">
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -21,6 +22,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		
 		<script src="scripts/index.js"></script>
+        
 
 	</head>
 
@@ -43,7 +45,7 @@
 						<li class="active"><a href="#">Home</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Crear mapa</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#createModal">Crear mapa</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -107,5 +109,51 @@
 		</div> <!-- /container -->
 
 
+        <div id="createModal" class="modal fade" role="dialog">
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwYnZm1IS1-rkEh-3luW6PJyziAk-5QCA&libraries=places&callback=initMap"
+        async defer></script>
+    <script src="scripts/create-form.js"></script>
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content content-modal-size">
+                <div class="modal-body">
+                  <div class="col-md-12">
+                      <div class="row">
+                          <div class="modal-title">
+                              <h1>Crear mapa</h1> 
+                          </div>
+                      </div>     
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-md-offset-2">
+                            <input type="text" class="form-control" id="MapName" aria-describedby="mapName" placeholder="Nombre del mapa">
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-md-8 col-md-offset-2">
+                            <input type="text" class="form-control" id="MapAuthor" aria-describedby="mapAuthor" placeholder="Autor">
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-md-offset-2">
+                                <input id="autocomplete" class="controls form-control" type="text" placeholder="Ingresar lugar">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="mapModal" class="col-md-10 col-md-offset-1"></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="submit-button">
+                               <button type="submit" class="btn btn-primary" onclick="getFormData()">Crear Mapa</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+        
 	</body>
 </html>

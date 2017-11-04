@@ -3,10 +3,22 @@
     padding: 1.5em;
 }
 
-#map {
-    height:400px;
+#mapModal {
+    height:300px;
 }
 
 .modal-title {
     text-align: center;
+}
+
+.content-modal-size {
+    min-height: 600px;
+}
+
+#autocomplete {
+    z-index: 100000; 
+}
+
+.pac-container {
+    z-index: 100000;
 }

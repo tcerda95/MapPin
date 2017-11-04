@@ -5,9 +5,13 @@ function getFormData() {
 
 }
 
+$('#createModal').on('shown.bs.modal', function () {
+        initMap();
+    });
+
 function initMap() {
         // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('mapModal'), {
           center: {lat: -33.867, lng: 151.195},
           zoom: 8
         });
