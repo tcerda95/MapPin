@@ -1,3 +1,106 @@
+  var selectedLatLng = {lat: 0, lng:0};
+
+  function markerCreate() {
+
+      var hitoTitle = $("#hito").val();
+      var desc = $("#hitodesc").val();
+      $('#marker-modal').modal('hide')
+      
+      var pin = {
+        name: hitoTitle,
+        description: desc,
+        latlng: selectedLatLng,
+        img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"
+      }     
+      
+      addPin(pin);
+  }
+
+
+
+  function addPin(pin){
+      console.log("Calling me")
+      var contentString = '<div id="iw-container">' +
+                    '<div class="iw-title">'+ pin.name + '</div>' +
+                    '<div class="iw-content">' +
+                      '<div class="iw-subTitle">Descripción</div>' +
+                      '<img src="'+ pin.img_url +'">' +
+                      '<p>'+ pin.description + '</p>'+
+                    '</div>' +
+                    '<div class="iw-bottom-gradient"></div>' +
+                  '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+
+      var marker =  new google.maps.Marker({
+                position: pin.latlng,
+                map: map, 
+                icon: icons[pin.type],
+                title: pin.name
+            });
+
+
+
+      marker.addListener('mouseover', function() {
+              infowindow.open(map, marker);   
+              infowindowFormat();     
+        });
+
+      var mouseOutHandler = marker.addListener('mouseout', function() {
+              infowindow.close(map, marker);     
+        });
+
+        
+      marker.addListener('click', function() {  
+        infowindow.open(map, marker);   
+        infowindowFormat();
+              
+        google.maps.event.removeListener(mouseOutHandler);
+
+        });
+
+ 
+      google.maps.event.addListener(infowindow,'closeclick',function(){
+          marker.addListener('mouseout', function() {
+           infowindow.close(map, marker);     
+          });            
+      });
+  }
+
+
+
+function infowindowFormat(){
+        var iwOuter = $('.gm-style-iw');
+
+              /* Since this div is in a position prior to .gm-div style-iw.
+               * We use jQuery and create a iwBackground variable,
+               * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+              */
+              var iwBackground = iwOuter.prev();
+
+              // Removes background shadow DIV
+              iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+              // Removes white background DIV
+              iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+
+              // Changes the desired tail shadow color.
+              iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+
+             // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+              if($('.iw-content').height() < 140){
+                $('.iw-bottom-gradient').css({display: 'none'});
+              }
+}
+
+
+
+
 var icons = {
 	religion: 'img/praying.png',
 	science: 'img/atomic.png',
@@ -47,7 +150,7 @@ angular.module('mappinApp', ['ngAnimate'])
 
 
     this.infomap.tabs[0].pins.forEach(function(item, index){
-            addPin(item);
+          addPin(item);
     })
 
   
@@ -55,83 +158,3 @@ angular.module('mappinApp', ['ngAnimate'])
 ;
 
 //$('#myModal').modal({ show: false})
-
-  var selectedLatLng = {lat: 0, lng:0};
-
-  function markerCreate() {
-
-      var hitoTitle = $("#hito").val();
-      var desc = $("#hitodesc").val();
-      $('#marker-modal').modal('hide')
-      
-      var pin = {
-        name: hitoTitle,
-        description: desc,
-        latlng: selectedLatLng,
-        img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"
-      }     
-      
-      addPin(pin);
-   }
-
-
-
-    function addPin(pin){
-      console.log("Calling me")
-        var contentString = '<div id="iw-container">' +
-                    '<div class="iw-title">'+ pin.name + '</div>' +
-                    '<div class="iw-content">' +
-                      '<div class="iw-subTitle">Descripción</div>' +
-                      '<img src="'+ pin.img_url +'">' +
-                      '<p>'+ pin.description + '</p>'+
-                    '</div>' +
-                    '<div class="iw-bottom-gradient"></div>' +
-                  '</div>';
-
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-
-
-        var marker =  new google.maps.Marker({
-                position: pin.latlng,
-                map: map, 
-				icon: icons[pin.type],
-                title: pin.name
-             });
-
-
-        marker.addListener('click', function() {
-              infowindow.open(map, marker);
-
-
-
-              var iwOuter = $('.gm-style-iw');
-
-              /* Since this div is in a position prior to .gm-div style-iw.
-               * We use jQuery and create a iwBackground variable,
-               * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
-              */
-              var iwBackground = iwOuter.prev();
-
-              // Removes background shadow DIV
-              iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-
-              // Removes white background DIV
-              iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-
-
-              // Changes the desired tail shadow color.
-              iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
-
-
-             // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
-              if($('.iw-content').height() < 140){
-                $('.iw-bottom-gradient').css({display: 'none'});
-              }
-
-        });
-    
-
-    }
-
