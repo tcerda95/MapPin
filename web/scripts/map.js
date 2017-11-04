@@ -1,3 +1,14 @@
+var icons = {
+	religion: 'img/praying.png',
+	science: 'img/atomic.png',
+	economy: 'img/dollar-symbol.png',
+	politics: 'img/capitol.png',
+	nature: 'img/volcano.png',
+	war: 'img/swords.png',
+	art: 'img/paint-board-and-brush.png',
+	society: 'img/holding-hands-in-a-circle.png'	
+}
+
 angular.module('mappinApp', ['ngAnimate'])
 	.controller('MapController', function() {
 

@@ -24,6 +24,9 @@
 	width: 100%;
 }
 
+.map-box {
+	padding: 0;
+}
 
 .map-info {
 	position: absolute;
@@ -117,4 +120,12 @@
 	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
 	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
 	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+#autocomplete {
+	position: absolute;
+    right: 10px;
+    z-index: 9999 !important;
+    margin: 10px;
+	width: auto !important;
 }
