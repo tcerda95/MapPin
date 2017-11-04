@@ -39,42 +39,19 @@ angular.module('mappinApp', ['ngAnimate'])
             console.log(response);
             myself.infomap = response.data;
 
-            myself.infomap.tabs[myself.selectedTab].pins.forEach(function(item, index){
-              addPin(item);
-            });
+            centerMap(response.data.initial);
 
+            if(myself.infomap.tabs.length > 0){
+              myself.infomap.tabs[myself.selectedTab].pins.forEach(function(item, index){
+                addPin(item);
+              });
+            }
            }, function(response){
               
            }
       );
-/*
-	this.infomap = 
-		{name: "Historia Argentina 1910",
-		 description: "Un mapa que prueba lo bueno que es mappin para aprender todo tipo de cosas en un modo interactivo, enriquecedor, blockchain",
-		 initial: {latLng:{lat: 10, lng: -30}, zoom: 3.0},
-		 author: {id: 123, name: "Juan Perez", email: "juan@victory.com.ar"},
-		 id: 101,
-		 tabs: [
-			 {name: "1920", id:1, 
-			  pins:[
-				  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latLng: {lat: 10.40, lng:-43.23}, type:"nature", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
-				  {name: "Torcuato de Alvear", description:"De la UCR", latLng: {lat: -10.40, lng:33.23}, type:"art", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]}, 
-			 {name: "1930", id:2,
-			  pins:[
-				  {name: "Uriburu", description:"dictador de facto", latLng: {lat: 90.40, lng:-3.23}, type:"religion", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},{name: "Pedro Justo", description:"Partido democrata nacional", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg", latLng: {lat: -40.40, lng:93.23}, type:"science"}]},
-			 {name: "1940", id:3, 
-			  pins:[
-				  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latLng: {lat: 10.40, lng:-43.23}, type:"religion", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
-				  {name: "Torcuato de Alvear", description:"De la UCR", latLng: {lat: -10.40, lng:33.23}, type:"art", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]}, 
-			 {name: "1950", id:4,
-			  pins:[
-				  {name: "Uriburu", description:"dictador de facto", latLng: {lat: 90.40, lng:-3.23}, type:"politics", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
-				  {name: "Pedro Justo", description:"Partido democrata nacional", latLng: {lat: -40.40, lng:93.23}, type: "society", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]},
-		 ]
-		}
-	;
 
-*/
+
 	this.showDescription = false;
 
 	this.titleHover = function(value) {
@@ -113,7 +90,10 @@ angular.module('mappinApp', ['ngAnimate'])
 
 	this.submitNewSection = function() {
 		var tabName = $('#tabName').val();
-		var newTab = {name: tabName, pins:[]}
+    
+
+   	var newTab = {name: tabName, pins:[]}
+
 		if (leftTabAdd) {
 			this.infomap.tabs.unshift(newTab);
 			this.selectedTab++;
@@ -166,6 +146,11 @@ angular.module('mappinApp', ['ngAnimate'])
 	
 });
 
+
+  function centerMap(initial){
+       map.setCenter(initial.latLng);
+       map.setZoom(initial.zoom);  // Why 17? Because it looks good.
+  }
 
 	function addPin(pin){
 		var contentString = '<div id="iw-container">' +
