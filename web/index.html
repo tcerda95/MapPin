@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mappinApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Mappin</title>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="css/index.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+				crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		
+		<script src="scripts/index.js"></script>
+
+	</head>
+
+	<body ng-controller="HomeController as homeCtrl">
+
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Mappin</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Crear mapa</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</nav>
+
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="most-popular-title">Más populares</div>
+				</div>
+			</div>
+			<div ng-repeat="map in homeCtrl.maps" ng-if="$index % 3 == 0" class="row">
+				<div class="col-md-4">
+					<div class="map-card" ng-click="homeCtrl.testClick()">
+						<div class="map-name">
+							{{homeCtrl.maps[$index].name}}
+						</div>
+
+						<div class="map-image">
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
+									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
+									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
+						</div>
+
+					</div>
+				</div>
+				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 1)">
+					<div class="map-card" ng-click="homeCtrl.testClick()">
+						<div class="map-name">
+							{{homeCtrl.maps[$index + 1].name}}
+						</div>
+
+						<div class="map-image">
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
+									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
+									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
+						</div>
+
+					</div>
+				</div>
+				<div class="col-md-4" ng-if="homeCtrl.maps.length > ($index + 2)">
+					<div class="map-card" ng-click="homeCtrl.testClick()">
+						<div class="map-name">
+							{{homeCtrl.maps[$index + 2].name}}
+						</div>
+
+						<div class="map-image">
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
+									  &markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+									  &markers=color:red%7Clabel:C%7C40.718217,-73.998284
+									  &key=AIzaSyCT7zRfmxgpFg5R5OxWMLtQGbefVeum6IE">
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div> <!-- /container -->
+
+
+	</body>
+</html>
