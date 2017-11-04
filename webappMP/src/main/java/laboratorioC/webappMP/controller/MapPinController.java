@@ -10,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -54,6 +55,16 @@ public class MapPinController {
 	private UriInfo uriInfo;
 	
 	@GET
+	@Path("/search")
+	public Response getMyByName(@QueryParam("name") final String name) {
+		if (name == null || name.length() == 0)
+			return Response.ok(new MapListDTO(new ArrayList<>())).build();
+		
+		final List<MapPinned> map = mapPinnedService.getMapsByName(name);
+		return Response.ok(new MapListDTO(map)).build();
+	}
+	
+	@GET
 	@Path("/{id}")
 	public Response getMapById(@PathParam("id") final int id) {		
 		final MapPinned map = mapPinnedService.getMapById(id);
@@ -68,7 +79,6 @@ public class MapPinController {
 	@Path("/")
 	public Response getMaps() {
 		final List<MapPinned> maps = mapPinnedService.getMaps();
-				
 		return Response.ok(new MapListDTO(maps)).build();
 	}
 	

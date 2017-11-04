@@ -96,12 +96,8 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 	@Override
 	public List<MapPinned> getMaps() {
 		final List<Integer> mapsIds = jdbcTemplate.queryForList("SELECT mapid FROM maps", Integer.class);
-		final List<MapPinned> maps = new ArrayList<>(mapsIds.size());
 		
-		for (Integer id : mapsIds)
-			maps.add(getMapById(id));
-		
-		return maps;
+		return mapsFromIds(mapsIds);
 	}
 
 	@Override
@@ -109,6 +105,23 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 		jdbcTemplate.update("DELETE FROM maps WHERE mapid = ?", origin);
 		jdbcTemplate.update("UPDATE maps SET mapid = ? WHERE mapid = ?", origin, newMap);
 		return getMapById(origin);
+	}
+
+	@Override
+	public List<MapPinned> getMapsByName(String name) {
+		String lower = name.toLowerCase();
+		List<Integer> mapIds = jdbcTemplate.queryForList("SELECT mapid FROM maps NATURAL JOIN authors WHERE lower(mapname) LIKE '" + lower + "%' OR lower(mapname) LIKE '% " + lower + "%'", Integer.class);
+		
+		return mapsFromIds(mapIds);
+	}
+	
+	private List<MapPinned> mapsFromIds(List<Integer> ids) {
+		final List<MapPinned> maps = new ArrayList<>(ids.size());
+		
+		for (Integer id : ids)
+			maps.add(getMapById(id));
+		
+		return maps;
 	}
 
 }

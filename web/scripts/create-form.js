@@ -10,7 +10,8 @@ function initMap() {
           fullscreenControl: false,
           streetViewControl: false,
           center: {lat: 0, lng: 0},
-          zoom: 1
+          zoom: 2,
+		  minZoom: 2
         });
           
         var input = /** @type {!HTMLInputElement} */(
@@ -86,7 +87,4 @@ function getFormData() {
                               });
     
     xhr.send(data);
-    
-    $('#createModal').modal('hide');
-    
 }

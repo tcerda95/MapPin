@@ -90,36 +90,25 @@ angular.module('mappinApp', ['ngAnimate'])
     })
   }
 
-	var leftTabAdd = false;
-	this.addTabLeft = function() {
-		leftTabAdd = true;
-		$('#createTabModal').modal('show');	
- 	};
-
-
-	this.addTabRight = function() {
-		leftTabAdd = false;
+	var newTabIndex = -1;
+	this.addTab = function(index) {
+		newTabIndex = index;
 		$('#createTabModal').modal('show');	
  	};
 
 	this.submitNewSection = function() {
 		var tabName = $('#tabName').val();
-    
+		var newTab = {name: tabName, pins:[]}
 
-   	var newTab = {name: tabName, pins:[]}
-
-		if (leftTabAdd) {
-			this.infomap.tabs.unshift(newTab);
+		if (newTabIndex <= this.selectedTab) {
 			this.selectedTab++;
 		}
-		else {
-			this.infomap.tabs.push(newTab);
-		}
+		this.infomap.tabs.splice(newTabIndex, 0, newTab);
     
-    persist(this);
-		
-    $('#tabName').val('');
-		$('#createTabModal').modal('hide');
+		persist(this);
+
+		$('#tabName').val('');
+			$('#createTabModal').modal('hide');
 	};
 
 
@@ -253,7 +242,7 @@ angular.module('mappinApp', ['ngAnimate'])
       // Apply the desired effect to the close button
       iwCloseBtn.css({
         opacity: '1', // by default the close button has an opacity of 0.7
-        right: '75px', top: '30px', // button repositioning
+        right: '65px', top: '26px', // button repositioning
         'background-color': '#0CA4A5',
         'border-radius': '1px', // circular effect
         'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
@@ -283,31 +272,6 @@ angular.module('mappinApp', ['ngAnimate'])
 				.siblings('.img-radio').css('opacity','1');
 		});
 	});
-
-
-
-var $star_rating = $('.star-rating .fa');
-
-var SetRatingStar = function() {
-  return $star_rating.each(function() {
-    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-      return $(this).removeClass('fa-star-o').addClass('fa-star');
-    } else {
-      return $(this).removeClass('fa-star').addClass('fa-star-o');
-    }
-  });
-};
-
-$star_rating.on('click', function() {
-  $star_rating.siblings('input.rating-value').val($(this).data('rating'));
-  return SetRatingStar();
-});
-
-SetRatingStar();
-$(document).ready(function() {
-
-});
-
 
 $('#pinsearch').keypress(function (e) {
   var key = e.which;
