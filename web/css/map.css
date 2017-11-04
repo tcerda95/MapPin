@@ -140,7 +140,7 @@
 	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
 }
 
-#autocomplete {
+#autocomplete, #pinsearch {
 	position: absolute;
     right: 10px;
     z-index: 1 !important;
@@ -257,4 +257,38 @@ input[type="radio"]:focus + span {
 
 .ok-button {
 	background-color: #43cc04;
+}
+
+#pin-box {
+	position: absolute;
+	right: 25px;
+	top: 60px;
+	height: 400px;
+	width: 300px;
+	z-index: 1 !important;
+	border-radius: 4px;
+	overflow-y: scroll;
+}
+
+.pin-item:hover {
+	cursor: pointer;
+	background-color: rgba(202, 202, 202, 0.93);
+}
+
+.pin-item {
+	display: flex;
+	justify-content: center;
+	align-items: center ;
+	padding: 8px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.9)
+}
+
+.pin-name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	padding: 10px;
+	border-radius: 4px;
 }

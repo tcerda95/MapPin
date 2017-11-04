@@ -44,9 +44,18 @@
 						<div class="map-description" ng-bind="mapCtrl.infomap.description" ng-show="mapCtrl.showDescription">
 						</div>
 					</div>
-					<input id="autocomplete" class="form-control" type="text" size="50" placeholder="Buscar en el mapa">
+					<input id="pinsearch" class="form-control" type="text" size="50" placeholder="Buscar en el Mappin">
 					<div class="edit-button" ng-show="!editMode" ng-click="enableEditMode()">Editar<span class="glyphicon glyphicon-pencil"></span></div>
 					<div class="ok-button edit-button" ng-show="editMode" ng-click="disableEditMode()">Listo<span class="glyphicon glyphicon-ok"></span></div>
+					<div id="pin-box">
+						<div class="row" ng-repeat="pin in mapCtrl.infomap.tabs[mapCtrl.selectedTab].pins">
+							<div class="col-md-12">
+								<div class="pin-item" ng-click="mapCtrl.focusOnCoordinates(pin.latLng)">
+									<span class="pin-type"><img src="{{icons[pin.type]}}"></span><span class="pin-name" ng-bind="pin.name"></span>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div id="map" class="panel panel-default"></div>
 				</div>
 			</div>
@@ -105,7 +114,13 @@
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-1" style="margin-top: 8px;">
                                     <label path="subject">Descripción:</label>
-                                    <textarea placeholder="Descripcion..." rows="10" cols="50" class="form-control" id="hitodesc"></textarea>
+                                    <textarea placeholder="Descripcion..." rows="6" cols="50" class="form-control" id="hitodesc"></textarea>
+                                </div>
+                            </div>
+							<div class="row">
+                                <div class="col-md-10 col-md-offset-1" style="margin-top: 8px;">
+                                    <label path="subject">Imagen:</label>
+                                    <textarea placeholder="URL de la imagen del hito (opcional)" rows="1" cols="50" class="form-control" id="hitoimg"></textarea>
                                 </div>
                             </div>
                             <div class="row" style="padding: 15px;">
