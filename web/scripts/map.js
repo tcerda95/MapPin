@@ -9,7 +9,7 @@ var icons = {
 	society: 'img/holding-hands-in-a-circle.png'  
 }
 var markers = [];
-selectedLatLng = {lat: 0, lng:0};
+selectedlatLng = {lat: 0, lng:0};
 
 angular.module('mappinApp', ['ngAnimate'])
 
@@ -18,25 +18,25 @@ angular.module('mappinApp', ['ngAnimate'])
 	this.infomap = 
 		{name: "Historia Argentina 1910",
 		 description: "Un mapa que prueba lo bueno que es mappin para aprender todo tipo de cosas en un modo interactivo, enriquecedor, blockchain",
-		 initial: {latlng:{lat: 10, lng: -30}, zoom: 3.0},
+		 initial: {latLng:{lat: 10, lng: -30}, zoom: 3.0},
 		 author: {id: 123, name: "Juan Perez", email: "juan@victory.com.ar"},
 		 id: 101,
 		 tabs: [
 			 {name: "1920", id:1, 
 			  pins:[
-				  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latlng: {lat: 10.40, lng:-43.23}, type:"nature", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
-				  {name: "Torcuato de Alvear", description:"De la UCR", latlng: {lat: -10.40, lng:33.23}, type:"art", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]}, 
+				  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latLng: {lat: 10.40, lng:-43.23}, type:"nature", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
+				  {name: "Torcuato de Alvear", description:"De la UCR", latLng: {lat: -10.40, lng:33.23}, type:"art", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]}, 
 			 {name: "1930", id:2,
 			  pins:[
-				  {name: "Uriburu", description:"dictador de facto", latlng: {lat: 90.40, lng:-3.23}, type:"religion", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},{name: "Pedro Justo", description:"Partido democrata nacional", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg", latlng: {lat: -40.40, lng:93.23}, type:"science"}]},
+				  {name: "Uriburu", description:"dictador de facto", latLng: {lat: 90.40, lng:-3.23}, type:"religion", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},{name: "Pedro Justo", description:"Partido democrata nacional", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg", latLng: {lat: -40.40, lng:93.23}, type:"science"}]},
 			 {name: "1940", id:3, 
 			  pins:[
-				  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latlng: {lat: 10.40, lng:-43.23}, type:"religion", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
-				  {name: "Torcuato de Alvear", description:"De la UCR", latlng: {lat: -10.40, lng:33.23}, type:"art", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]}, 
+				  {name: "Hipolito Yrigoyen presidente", description:"De la UCR", latLng: {lat: 10.40, lng:-43.23}, type:"religion", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
+				  {name: "Torcuato de Alvear", description:"De la UCR", latLng: {lat: -10.40, lng:33.23}, type:"art", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]}, 
 			 {name: "1950", id:4,
 			  pins:[
-				  {name: "Uriburu", description:"dictador de facto", latlng: {lat: 90.40, lng:-3.23}, type:"politics", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
-				  {name: "Pedro Justo", description:"Partido democrata nacional", latlng: {lat: -40.40, lng:93.23}, type: "society", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]},
+				  {name: "Uriburu", description:"dictador de facto", latLng: {lat: 90.40, lng:-3.23}, type:"politics", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"},
+				  {name: "Pedro Justo", description:"Partido democrata nacional", latLng: {lat: -40.40, lng:93.23}, type: "society", img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"}]},
 		 ]
 		}
 	;
@@ -113,7 +113,7 @@ angular.module('mappinApp', ['ngAnimate'])
 			name: hitoTitle,
 			description: desc,
 			type: type,
-			latlng: selectedLatLng,
+			latLng: selectedlatLng,
 			img_url: "http://assets.vg247.com/current//2015/06/the_witcher_3_close_up_geralt_hrrr.jpg"
 		}     
 		this.infomap.tabs[this.selectedTab].pins.push(pin);
@@ -140,7 +140,7 @@ angular.module('mappinApp', ['ngAnimate'])
 
 
 		var marker =  new google.maps.Marker({
-			position: pin.latlng,
+			position: pin.latLng,
 			map: map, 
 			icon: icons[pin.type],
 			title: pin.name
