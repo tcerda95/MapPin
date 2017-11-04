@@ -51,11 +51,11 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 	@Override
 	public MapPinned getMapById(int id) {
 		final List<MapPinTab> tabs = getMapPinTabs(id);
+		final List<MapPinned> maps = jdbcTemplate.query("SELECT * FROM maps NATURAL JOIN authors WHERE mapid = ?", mapMapper, id);
 		
-		if (tabs.isEmpty())
+		if (maps.isEmpty())
 			return null;
 		
-		final List<MapPinned> maps = jdbcTemplate.query("SELECT * FROM maps NATURAL JOIN authors WHERE mapid = ?", mapMapper, id);
 		final MapPinned map = maps.get(0);
 		
 		map.setTabs(tabs);
