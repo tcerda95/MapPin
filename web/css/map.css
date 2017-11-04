@@ -34,6 +34,7 @@
 
 .tab.selected {
 	background-color: #0ca4a5;
+	color: #fff;
 }
 
 #map {

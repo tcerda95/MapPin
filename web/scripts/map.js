@@ -245,7 +245,7 @@ angular.module('mappinApp', ['ngAnimate'])
       // Apply the desired effect to the close button
       iwCloseBtn.css({
         opacity: '1', // by default the close button has an opacity of 0.7
-        right: '75px', top: '30px', // button repositioning
+        right: '65px', top: '26px', // button repositioning
         'background-color': '#0CA4A5',
         'border-radius': '1px', // circular effect
         'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
