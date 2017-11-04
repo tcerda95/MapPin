@@ -33,5 +33,10 @@ public class MapPinnedServiceImpl implements MapPinnedService {
 	public List<MapPinned> getMaps() {
 		return mapPinnedDao.getMaps();
 	}
+	
+	@Override
+	public List<MapPinned> getMapsByName(String name) {
+		return mapPinnedDao.getMapsByName(name);
+	}
 
 }

@@ -9,4 +9,5 @@ public interface MapPinnedService {
 	MapPinned createMap(String name, String description, int authorId, float initLatitude, float initLongitude, int zoom);
 	MapPinned replaceMap(int origin, int newMap);
 	List<MapPinned> getMaps();
+	List<MapPinned> getMapsByName(String name);
 }
