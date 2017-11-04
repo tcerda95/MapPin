@@ -1,6 +1,7 @@
 .map-card {
 	box-shadow: 0 0 10px #d2d2d2;
 	border-radius: 4px;
+	position: relative;
 }
 
 .map-card:hover {
@@ -37,4 +38,35 @@
 .navbar-default {
 	background-image: none !important;
 	background-color: #fff !important;
+}
+
+.create-map {
+	margin-top: 5px;
+    background-color: #06908f !important;
+    background-image: none !important;
+    text-shadow: none !important;
+    color: #fff !important;
+    font-size: 1.3em !important;
+    letter-spacing: 1px;
+    border: none !important;
+}
+
+.create-map:hover {
+	background-color: #0ca4a5 !important;
+}
+
+.map-card:hover .map-card-description {
+	display: inline-block !important;
+}
+
+.map-card-description {
+	position: absolute;
+    font-size: 0.8em;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: none;
+    bottom: 0px;
+    max-height: 4em;
+    padding: 5px;
+    text-overflow: ellipsis;
+    width: 100%;
 }
