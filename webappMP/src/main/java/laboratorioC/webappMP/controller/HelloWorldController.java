@@ -6,9 +6,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import laboratorioC.model.MapPin;
+import laboratorioC.model.MapPinned;
+import laboratorioC.service.MapPinnedService;
 import laboratorioC.webappMP.dto.MapPinDTO;
 
 @Path("map")
@@ -16,10 +18,13 @@ import laboratorioC.webappMP.dto.MapPinDTO;
 @Produces(value = {MediaType.APPLICATION_JSON})
 public class HelloWorldController {
 	
+	@Autowired
+	private MapPinnedService mapPinnedService;
+	
 	@GET
 	@Path("/")
 	public Response getProductById() {		
-		final MapPin map = new MapPin("Gran mapa");
+		final MapPinned map = new MapPinned("Gran mapa");
 		
 		return Response.ok(new MapPinDTO(map)).build();
 	}

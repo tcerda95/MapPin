@@ -1,10 +1,10 @@
 package laboratorioC.model;
 
 public class LatLng {
-	private final double latitude;
-	private final double longitude;
+	private final float latitude;
+	private final float longitude;
 	
-	public LatLng(final double latitude, final double longitude) {
+	public LatLng(final float latitude, final float longitude) {
 		if (latitude < -91 || latitude > 91)
 			throw new IllegalArgumentException("Invalid latitude " + latitude);
 		
