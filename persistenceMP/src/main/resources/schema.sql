@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS pins (
 	pinid SERIAL PRIMARY KEY,
 	pinname VARCHAR(512) NOT NULL,
 	pindescription VARCHAR(512) NOT NULL,
+	imageurl VARCHAR(1024),
 	category VARCHAR(64) NOT NULL,
 	latitude FLOAT NOT NULL,
 	longitude FLOAT NOT NULL,
