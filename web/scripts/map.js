@@ -297,3 +297,28 @@ SetRatingStar();
 $(document).ready(function() {
 
 });
+
+
+$('#pinsearch').keypress(function (e) {
+  var key = e.which;
+  var input = $('#pinsearch').val();
+  console.log(input.length);
+  console.log(input);
+  
+  if(!input || !input.length)
+    return;
+
+ if(key == 13)  // the enter key code
+  {
+    for(var i = 0 ; i < markers.length ; i++){
+        var m = markers[i];
+        var title = m.title.toLowerCase();
+        if(title.indexOf(input.toLowerCase()) !== -1){
+          map.setCenter(m.position);
+          map.setZoom(7);          //Magic 17
+          return;
+        }
+
+    }
+  }
+});   
