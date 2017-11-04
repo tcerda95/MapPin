@@ -5,13 +5,15 @@ public class MapPin {
 	private final String name;
 	private final String description;
 	private final PinCategory category;
+	private final String imageUrl;
 	private final LatLng latLng;
 
-	public MapPin(final int id, final String name, final String description, final PinCategory category, final float latitude, final float longitude) {
+	public MapPin(final int id, final String name, final String description, final PinCategory category, final String imageUrl, final float latitude, final float longitude) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.category = category;
+		this.imageUrl = imageUrl;
 		this.latLng = new LatLng(latitude, longitude);
 	}
 		
@@ -29,6 +31,10 @@ public class MapPin {
 
 	public PinCategory getCategory() {
 		return category;
+	}
+	
+	public String getImageUrl() {
+		return imageUrl;
 	}
 	
 	public LatLng getLatLng() {

@@ -25,7 +25,7 @@ public class MapPinJdbcDao implements MapPinDao {
 		@Override
 		public MapPin mapRow(ResultSet rs, int rowNum) throws SQLException {
 			return new MapPin(rs.getInt("pinid"), rs.getString("pinname"), rs.getString("pindescription"), PinCategory.valueOf(rs.getString("category")), 
-					rs.getFloat("latitude"), rs.getFloat("longitude"));
+					rs.getString("imageurl"), rs.getFloat("latitude"), rs.getFloat("longitude"));
 		}
     };
     
@@ -39,19 +39,20 @@ public class MapPinJdbcDao implements MapPinDao {
 	}
     
 	@Override
-	public MapPin createMapPin(String name, String description, PinCategory pinCategory, float latitude, float longitude, int mapPinTabId) {
+	public MapPin createMapPin(String name, String description, PinCategory pinCategory, String imageUrl, float latitude, float longitude, int mapPinTabId) {
 		final Map<String, Object> args = new HashMap<>();
 		
 		args.put("pinname", name);
 		args.put("pindescription", description);
 		args.put("category", pinCategory.name());
+		args.put("imageurl", imageUrl);
 		args.put("latitude", latitude);
 		args.put("longitude", longitude);
 		args.put("tabid", mapPinTabId);
 		
 		Number id = jdbcInsert.executeAndReturnKey(args);
 		
-		return new MapPin(id.intValue(), name, description, pinCategory, latitude, longitude);
+		return new MapPin(id.intValue(), name, description, pinCategory, imageUrl, latitude, longitude);
 	}
 
 }
