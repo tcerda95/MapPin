@@ -71,13 +71,13 @@ public class HelloWorldController {
 			Response.status(Status.BAD_REQUEST);
 			System.out.println("MAP DTO ES NULL");
 		}
-		
+				
 		Author author = authorService.getAuthorByEmail(mapDto.getAuthor().getEmail());
-		
+				
 		if (author == null)
-			author = authorService.createAuthor(mapDto.getAuthor().getName(), mapDto.getAuthor().getName());
+			author = authorService.createAuthor(mapDto.getAuthor().getName(), mapDto.getAuthor().getEmail());
 		
-		final MapPinned map = mapPinnedService.createMap(mapDto.getName(), mapDto.getDescription(), mapDto.getAuthor().getId(), 
+		final MapPinned map = mapPinnedService.createMap(mapDto.getName(), mapDto.getDescription(), author.getId(), 
 				mapDto.getInitial().getLatLng().getLat(), mapDto.getInitial().getLatLng().getLng(), mapDto.getInitial().getZoom());
 		
 		map.setTabs(insertMapPinTabs(mapDto.getTabs(), map.getId()));

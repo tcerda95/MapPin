@@ -9,7 +9,7 @@ var icons = {
 	society: 'img/holding-hands-in-a-circle.png'  
 }
 var markers = [];
-var selectedLatLng = {lat: 0, lng:0};
+selectedLatLng = {lat: 0, lng:0};
 
 angular.module('mappinApp', ['ngAnimate'])
 
@@ -195,6 +195,25 @@ angular.module('mappinApp', ['ngAnimate'])
 		// Changes the desired tail shadow color.
 		iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
 
+
+		var iwCloseBtn = iwOuter.next();
+
+      // Apply the desired effect to the close button
+      iwCloseBtn.css({
+        opacity: '1', // by default the close button has an opacity of 0.7
+        right: '75px', top: '30px', // button repositioning
+        'background-color': '#0CA4A5',
+        'border-radius': '1px', // circular effect
+        'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+        });
+
+      // The API automatically applies 0.7 opacity to the button after the mouseout event.
+      // This function reverses this event to the desired value.
+      
+    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+    if($('.iw-content').height() < 140){
+      $('.iw-bottom-gradient').css({display: 'none'});
+    }
 
 		// If the content of infowindow not exceed the set maximum height, then the gradient is removed.
 		if($('.iw-content').height() < 140){

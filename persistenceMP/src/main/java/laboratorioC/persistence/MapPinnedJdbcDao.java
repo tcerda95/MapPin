@@ -79,8 +79,9 @@ public class MapPinnedJdbcDao implements MapPinnedDao {
 	public MapPinned createMap(String name, String description, int authorId, float initLatitude, float initLongitude, int zoom) {
 		final Map<String, Object> args = new HashMap<>();
 		
+		args.put("mapname", name);
 		args.put("authorname", name);
-		args.put("description", description);
+		args.put("mapdescription", description);
 		args.put("authorid", authorId);
 		args.put("initlatitude", initLatitude);
 		args.put("initLongitude", initLongitude);

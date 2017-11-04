@@ -13,9 +13,13 @@ $('#createModal').on('shown.bs.modal', function () {
         initMap();
     });
 
+
 function initMap() {
         // Create a map object and specify the DOM element for display.
         map = new google.maps.Map(document.getElementById('mapModal'), {
+          mapTypeControl: false,
+          fullscreenControl: false,
+          streetViewControl: false,
           center: {lat: 0, lng: 0},
           zoom: 1
         });
