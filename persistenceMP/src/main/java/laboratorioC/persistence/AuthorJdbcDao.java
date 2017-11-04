@@ -61,5 +61,15 @@ public class AuthorJdbcDao implements AuthorDao {
 		
 		return authorList.get(0);
 	}
+	
+	@Override
+	public Author getAuthorByEmail(String email) {
+		final List<Author> authorList = jdbcTemplate.query("SELECT * FROM authors WHERE email = ?", authorMapper, email);
+		
+		if (authorList.isEmpty())
+			return null;
+		
+		return authorList.get(0);
+	}
 
 }

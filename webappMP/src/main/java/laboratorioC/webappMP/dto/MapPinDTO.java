@@ -9,8 +9,8 @@ public class MapPinDTO {
 	private int id;
 	private String name;
 	private String description;
-	private String category;
-	private String imageUrl;
+	private String type;
+	private String img_url;
 	private LatLngDTO latLng;
 	
 	public MapPinDTO() {}
@@ -19,8 +19,8 @@ public class MapPinDTO {
 		this.id = pin.getId();
 		this.name = pin.getName();
 		this.description = pin.getDescription();
-		this.category = pin.getCategory().toString();
-		this.imageUrl = pin.getImageUrl();
+		this.type = pin.getCategory().toString();
+		this.img_url = pin.getImageUrl();
 		this.latLng = new LatLngDTO(pin.getLatLng());
 	}
 
@@ -48,12 +48,12 @@ public class MapPinDTO {
 		this.description = description;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getType() {
+		return type;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public LatLngDTO getLatLng() {
@@ -64,11 +64,11 @@ public class MapPinDTO {
 		this.latLng = latLng;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getImg_url() {
+		return img_url;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImg_url(String img_url) {
+		this.img_url = img_url;
 	}
 }
