@@ -20,10 +20,43 @@
 }
 
 #map {
-	height: 500px;
+	height: 600px;
 	width: 100%;
 }
 
+
+.map-info {
+	position: absolute;
+    z-index: 9999 !important;
+    margin: 10px;
+}
+
+.map-title {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1.1em;
+	width: fit-content;
+}
+
+.map-title:hover {
+	cursor: pointer;
+}
+
+.map-description {
+	padding: 5px;
+    background-color: #ffffff8c;
+    border-radius: 4px;
+}
+
+.map-description.ng-hide-add, .map-description.ng-hide-remove {
+  transition: all 0.3s ease-in;
+}
+
+.map-description.ng-hide {
+  opacity: 0;
+}
 
 
 .gm-style-iw {

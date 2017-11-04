@@ -3,20 +3,49 @@ package laboratorioC.model;
 import java.util.List;
 
 public class MapPinned {
-	private final int id;
+	private int id;
 	private final String name;
+	private final String description;
 	private final Author author;
-	private final List<MapPinTab> tabs;
+	private List<MapPinTab> tabs;
 	
-	public MapPinned(final int id, final String name, final Author author, final List<MapPinTab> tabs) {
+	public MapPinned(final int id, final String name, final String description, final Author author) {
 		this.id = id;
 		this.name = name;
+		this.description = description;
+		this.author = author;
+	}
+
+	public MapPinned(final int id, final String name, final String description, final Author author, final List<MapPinTab> tabs) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
 		this.author = author;
 		this.tabs = tabs;
 	}
 	
 	public int getId() {
 		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+	
+	public List<MapPinTab> getTabs() {
+		return tabs;
+	}
+	
+	public void setTabs(List<MapPinTab> tabs) {
+		this.tabs = tabs;
 	}
 	
 	@Override
@@ -35,17 +64,5 @@ public class MapPinned {
 		final MapPinned other = (MapPinned) obj;
 
 		return other.getId() == getId();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Author getAuthor() {
-		return author;
-	}
-
-	public List<MapPinTab> getTabs() {
-		return tabs;
 	}
 }

@@ -2,7 +2,7 @@ package laboratorioC.webappMP.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import laboratorioC.model.MapPin;
+import laboratorioC.model.MapPinned;
 
 @XmlRootElement
 public class MapPinDTO {
@@ -11,7 +11,7 @@ public class MapPinDTO {
 	
 	public MapPinDTO() {}
 	
-	public MapPinDTO(final MapPin map) {
+	public MapPinDTO(final MapPinned map) {
 		this.name = map.getName();
 	}
 }

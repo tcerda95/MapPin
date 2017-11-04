@@ -1,4 +1,4 @@
-angular.module('mappinApp', [])
+angular.module('mappinApp', ['ngAnimate'])
 	.controller('MapController', function() {
 
 		this.infomap = 
@@ -27,12 +27,19 @@ angular.module('mappinApp', [])
 			}
 		;
 	
+
   this.infomap.tabs[0].pins.forEach(function(item, index){
           addPin(item);
       })
 
 
-  })
+  this.showDescription = false;
+	
+	this.titleHover = function(value) {
+  this.showDescription = value;
+	
+  	}
+	})
 ;
 
 //$('#myModal').modal({ show: false})

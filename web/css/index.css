@@ -1,6 +1,7 @@
 .map-card {
 	box-shadow: 0 0 10px #d2d2d2;
 	border-radius: 4px;
+	position: relative;
 }
 
 .map-card:hover {
@@ -52,4 +53,25 @@
 
 .create-map:hover {
 	background-color: #0ca4a5 !important;
+}
+
+.map-card:hover .map-card-description {
+	display: inline-block !important;
+}
+
+.map-card-description {
+	position: absolute;
+    font-size: 0.8em;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: none;
+    bottom: 0px;
+    max-height: 4em;
+    padding: 5px;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.navbar-brand { 
+	padding: 0 !important;
+	padding-right: 10px !important;
 }
